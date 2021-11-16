@@ -18,6 +18,7 @@ namespace PetFocus.Data
 
         public virtual Pet Pet { get; set; }
 
+        [Display(Name ="Last Date of Heartworm medication")]
         public DateTime HeartwormMed { get; set; }
 
         public bool IsTimeForHeartMed
@@ -32,8 +33,10 @@ namespace PetFocus.Data
             }
         }
 
+        [Display(Name ="Last Date of Rabies Vaccination")]
         public DateTime RabiesVac { get; set; }
 
+        [Display(Name ="Was it a three year rabies vaccination?")]
         public bool IsThreeYearRabiesVac { get; set; }
 
         public bool IsTimeForRabies 
@@ -46,12 +49,15 @@ namespace PetFocus.Data
             } 
         }
 
+        [Display(Name ="Last Date of Flea treatment")]
         public DateTime FleaTreatment { get; set; }
 
         public bool IsTimeForFlea { get { return(DateTime.Now - FleaTreatment).TotalDays == 30; } }
 
+        [Display(Name ="Last Date of Nail Trim")]
         public DateTime NailTrim { get; set; }
 
+        [Display(Name ="How often do you trim the nails in days?")]
         public int TrimSchedule { get; set; }
 
         public bool IsTimeForTrim { get { return (DateTime.Now - NailTrim).TotalDays == TrimSchedule; } }

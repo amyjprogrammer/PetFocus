@@ -18,9 +18,11 @@ namespace PetFocus.Data
         public virtual Pet Pet { get; set; }
 
         [Required]
+        [Range(0.1, 350.0)]//world's heaviest dog was 345
         public double PetWeight { get; set; }
 
         [Required]
+        [Display(Name ="Date")]
         public DateTime WeightDate { get; set; }
     }
 }
