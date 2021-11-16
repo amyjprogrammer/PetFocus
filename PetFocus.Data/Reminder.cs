@@ -26,10 +26,9 @@ namespace PetFocus.Data
             {
                 //heart meds need to be 30 days away
                 //would like to make that every month- stretch goal
-                var today = DateTime.Now;
-                var next = new DateTime(today.Year, HeartwormMed.Month, HeartwormMed.Day);
-
-                return ((next - today).Days == 30);
+                /*var today = DateTime.Now;
+                var next = new DateTime(today.Year, HeartwormMed.Month, HeartwormMed.Day);*/
+                return (DateTime.Now - HeartwormMed).TotalDays == 30;
             }
         }
 
@@ -41,9 +40,20 @@ namespace PetFocus.Data
         { 
             get 
             {
-                var today = DateTime.Now;
-                var next = new DateTime(today.Year, RabiesVac.Month, RabiesVac.Day);
+                if (IsThreeYearRabiesVac) return (DateTime.Now - RabiesVac).TotalDays == 1095;
+
+                else return (DateTime.Now - RabiesVac).TotalDays == 365;
             } 
         }
+
+        public DateTime FleaTreatment { get; set; }
+
+        public bool IsTimeForFlea { get { return(DateTime.Now - FleaTreatment).TotalDays == 30; } }
+
+        public DateTime NailTrim { get; set; }
+
+        public int TrimSchedule { get; set; }
+
+        public bool IsTimeForTrim { get { return (DateTime.Now - NailTrim).TotalDays == TrimSchedule; } }
     }
 }

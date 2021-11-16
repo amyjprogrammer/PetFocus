@@ -32,6 +32,9 @@ namespace PetFocus.Data
             return new ApplicationDbContext();
         }
         public DbSet<Pet> Pets { get; set; }
+        public DbSet<Reminder> Reminders { get; set; }
+        public DbSet<Weight> Weights { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
