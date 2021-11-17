@@ -20,5 +20,12 @@ namespace PetFocus.WebMVC.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(WeightCreate model)
+        {
+            return View(model);
+        }
     }
 }

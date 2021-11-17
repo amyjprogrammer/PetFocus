@@ -241,6 +241,9 @@
     <Content Include="Views\Pet\Index.cshtml" />
     <Content Include="Views\Weight\Index.cshtml" />
     <Content Include="Views\Reminder\Index.cshtml" />
+    <Content Include="Views\Reminder\Create.cshtml" />
+    <Content Include="Views\Weight\Create.cshtml" />
+    <Content Include="Views\Pet\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
