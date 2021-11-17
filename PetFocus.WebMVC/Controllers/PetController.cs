@@ -16,5 +16,10 @@ namespace PetFocus.WebMVC.Controllers
             var model = new PetListItem[0];
             return View(model);
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }

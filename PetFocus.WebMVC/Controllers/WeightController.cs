@@ -16,5 +16,9 @@ namespace PetFocus.WebMVC.Controllers
             var model = new WeightListItem[0];
             return View(model);
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }

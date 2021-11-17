@@ -54,9 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PetModel\PetCreate.cs" />
     <Compile Include="PetModel\PetListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReminderModel\ReminderCreate.cs" />
     <Compile Include="ReminderModel\ReminderListItem.cs" />
+    <Compile Include="WeightModel\WeightCreate.cs" />
     <Compile Include="WeightModel\WeightListItem.cs" />
   </ItemGroup>
   <ItemGroup>
