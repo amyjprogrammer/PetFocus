@@ -240,11 +240,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Pet\Index.cshtml" />
     <Content Include="Views\Weight\Index.cshtml" />
+    <Content Include="Views\Reminder\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\HomemadeFood\" />
-    <Folder Include="Views\Reminder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

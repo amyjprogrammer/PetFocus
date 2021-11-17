@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetFocus.Models.ReminderModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,8 @@ namespace PetFocus.WebMVC.Controllers
         // GET: Reminder
         public ActionResult Index()
         {
-            return View();
+            var model = new ReminderListItem[0];
+            return View(model);
         }
     }
 }
