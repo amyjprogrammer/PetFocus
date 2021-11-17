@@ -54,11 +54,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HomemadeFoodService.cs" />
+    <Compile Include="PetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReminderService.cs" />
+    <Compile Include="WeightService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PetFocus.Data\PetFocus.Data.csproj">
+      <Project>{1a23ac66-53c2-4ec1-869a-18b8d823a7c2}</Project>
+      <Name>PetFocus.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PetFocus.Models\PetFocus.Models.csproj">
+      <Project>{a6b4412a-6dcc-4d7e-be28-b23c77bf3e58}</Project>
+      <Name>PetFocus.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

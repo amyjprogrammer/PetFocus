@@ -12,8 +12,6 @@ namespace PetFocus.Models.ReminderModel
     {
         public int PetId { get; set; }
 
-        public Pet Pet { get; set; }
-
         [Display(Name = "Heartworm medication")]
         public DateTime HeartwormMed { get; set; }
 

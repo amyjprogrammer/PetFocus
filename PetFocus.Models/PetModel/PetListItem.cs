@@ -34,8 +34,5 @@ namespace PetFocus.Models.PetModel
         [Display(Name = "Veterinarian's Name")]
         public string VetName { get; set; }
 
-        public Reminder Reminder { get; set; }
-
-        public List<WeightListItem> Weights { get; set; } = new List<WeightListItem>();
     }
 }
