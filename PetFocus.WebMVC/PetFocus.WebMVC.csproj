@@ -238,11 +238,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Pet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\HomemadeFood\" />
-    <Folder Include="Views\Pet\" />
     <Folder Include="Views\Reminder\" />
     <Folder Include="Views\Weight\" />
   </ItemGroup>

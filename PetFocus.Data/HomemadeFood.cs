@@ -12,18 +12,14 @@ namespace PetFocus.Data
         [Key]
         public int HomemadeFoodId { get; set; }
 
-        [Required]
-        public string Ingredient { get; set; }
-
-        [Required]
-        public string Quantity { get; set; }
-
         public string Notes { get; set; }
 
         [Required]
         [Display(Name ="Still in Use?")]
         public bool IsStillUsed { get; set; }
 
-        public virtual ICollection<Pet> Pets { get; set; }
+        public virtual ICollection<HomemadeList> HomemadeLists { get; set; } = new List<HomemadeList>();
+
+        public virtual ICollection<Pet> Pets { get; set; } = new List<Pet>();
     }
 }

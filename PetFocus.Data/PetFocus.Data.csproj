@@ -55,10 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HomemadeFood.cs" />
+    <Compile Include="HomemadeList.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202111170403189_First.cs" />
     <Compile Include="Migrations\202111170403189_First.Designer.cs">
       <DependentUpon>202111170403189_First.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111171729497_Homemade.cs" />
+    <Compile Include="Migrations\202111171729497_Homemade.Designer.cs">
+      <DependentUpon>202111171729497_Homemade.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pet.cs" />
@@ -73,6 +78,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202111170403189_First.resx">
       <DependentUpon>202111170403189_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111171729497_Homemade.resx">
+      <DependentUpon>202111171729497_Homemade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
