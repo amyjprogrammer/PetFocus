@@ -22,6 +22,9 @@ namespace PetFocus.Data
         public int PetId { get; set; }
 
         [Required]
+        public Guid OwnerId { get; set; }
+
+        [Required]
         [MinLength(2, ErrorMessage = "Please enter at least two characters.")]
         [MaxLength(100)]
         [Display(Name ="Pet Name")]
@@ -49,8 +52,9 @@ namespace PetFocus.Data
         [Display(Name ="Veterinarian's Name")]
         public string VetName { get; set; }
 
-        public virtual ICollection<Reminder> Reminders { get; set; } = new List<Reminder>();
+        public virtual Reminder Reminder { get; set; }
 
         public virtual ICollection<Weight> Weights { get; set; } = new List<Weight>();
+        public virtual ICollection<HomemadeFood> HomemadeFoods { get; set; } = new List<HomemadeFood>();
     }
 }

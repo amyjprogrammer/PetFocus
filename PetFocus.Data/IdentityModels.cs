@@ -34,6 +34,7 @@ namespace PetFocus.Data
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Reminder> Reminders { get; set; }
         public DbSet<Weight> Weights { get; set; }
+        public DbSet<HomemadeFood> HomemadeFoods { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -45,6 +46,13 @@ namespace PetFocus.Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+
+            modelBuilder
+                .Entity<Pet>()
+                .HasMany(c => c.HomemadeFoods).WithMany(i => i.Pets)
+                .Map(t => t.MapLeftKey("PetId")
+                .MapRightKey("HomemadeId")
+                .ToTable("PetHomemade"));
         }
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
