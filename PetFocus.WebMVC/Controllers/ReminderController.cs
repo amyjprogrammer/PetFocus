@@ -1,4 +1,5 @@
 ﻿using PetFocus.Models.ReminderModel;
+using PetFocus.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace PetFocus.WebMVC.Controllers
         // GET: Reminder
         public ActionResult Index()
         {
-            var model = new ReminderListItem[0];
+            var service = new ReminderService();
+            var model = service.GetReminders();
             return View(model);
         }
 
@@ -25,6 +27,17 @@ namespace PetFocus.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ReminderCreate model)
         {
+            if (!ModelState.IsValid) return View(model);
+
+            var service = new ReminderService();
+
+            if (service.CreateReminder(model))
+            {
+                TempData["SaveResult"] = "Your reminder was created.";
+                return RedirectToAction("Index");
+            };
+
+            ModelState.AddModelError("", "The reminder could not be created.");
             return View(model);
         }
     }

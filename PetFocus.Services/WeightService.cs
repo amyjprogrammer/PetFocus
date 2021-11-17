@@ -26,7 +26,7 @@ namespace PetFocus.Services
             }
         }
 
-        public IEnumerable<WeightListItem> GetReminders()
+        public IEnumerable<WeightListItem> GetWeights()
         {
             using (var ctx = new ApplicationDbContext())
             {
