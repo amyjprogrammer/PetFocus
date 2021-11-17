@@ -40,5 +40,13 @@ namespace PetFocus.WebMVC.Controllers
             ModelState.AddModelError("", "The weight entry could not be created.");
             return View(model);
         }
+
+        public ActionResult Details(int id)
+        {
+            var service = new WeightService();
+            var model = service.GetWeightById(id);
+
+            return View(model);
+        }
     }
 }

@@ -44,6 +44,13 @@ namespace PetFocus.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Details(int id)
+        {
+            var svc = CreatePetService();
+            var model = svc.GetPetById(id);
+            return View(model);
+        }
+
         private PetService CreatePetService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

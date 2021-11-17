@@ -40,5 +40,13 @@ namespace PetFocus.WebMVC.Controllers
             ModelState.AddModelError("", "The reminder could not be created.");
             return View(model);
         }
+
+        public ActionResult Details(int id)
+        {
+            var service = new ReminderService();
+            var model = service.GetReminderById(id);
+
+            return View(model);
+        }
     }
 }

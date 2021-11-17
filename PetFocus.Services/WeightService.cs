@@ -46,5 +46,24 @@ namespace PetFocus.Services
                 return query.ToArray();
             }
         }
+
+        public WeightDetail GetWeightById(int id)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Weights
+                    .Single(e => e.WeightId == id);
+                return
+                    new WeightDetail
+                    {
+                        WeightId = entity.WeightId,
+                        Pet = entity.Pet,
+                        PetWeight = entity.PetWeight,
+                        WeightDate = entity.WeightDate
+                    };
+            }
+        }
     }
 }

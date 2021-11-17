@@ -53,5 +53,27 @@ namespace PetFocus.Services
                 return query.ToArray();
             }
         }
+
+        public ReminderDetail GetReminderById(int id)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Reminders
+                    .Single(e => e.PetId == id);
+                return
+                    new ReminderDetail
+                    {
+                        PetId = entity.PetId,
+                        HeartwormMed = entity.HeartwormMed,
+                        RabiesVac = entity.RabiesVac,
+                        IsThreeYearRabiesVac = entity.IsThreeYearRabiesVac,
+                        FleaTreatment = entity.FleaTreatment,
+                        NailTrim = entity.NailTrim,
+                        TrimSchedule = entity.TrimSchedule
+                    };
+            }
+        }
     }
 }

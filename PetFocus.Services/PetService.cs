@@ -1,5 +1,6 @@
 ﻿using PetFocus.Data;
 using PetFocus.Models.PetModel;
+using PetFocus.Models.WeightModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,36 @@ namespace PetFocus.Services
                         }
                         );
                 return query.ToArray();
+            }
+        }
+
+        public PetDetail GetPetById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Pets
+                    .Single(e => e.PetId == id && e.OwnerId == _userId);
+                var pet = new PetDetail
+                    {
+                        PetId = entity.PetId,
+                        PetName = entity.PetName,
+                        Species = entity.Species,
+                        PetSex = entity.PetSex,
+                        IsSpayedNeutered = entity.IsSpayedNeutered,
+                        Breed = entity.Breed,
+                        Birthdate = entity.Birthdate,
+                        MicrochipNum = entity.MicrochipNum,
+                        VetName = entity.VetName,
+                        Reminder = entity.Reminder
+                    };
+                foreach(var weight in entity.Weights)
+                {
+                    pet.Weights.Add(new WeightListItem { WeightId = weight.WeightId, Pet = weight.Pet, PetWeight = weight.PetWeight, WeightDate = weight.WeightDate });
+                }
+
+                return pet;
             }
         }
     }
