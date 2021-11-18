@@ -25,14 +25,33 @@ namespace PetFocus.Services
                 };
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Reminders.Add(entity);
-                return ctx.SaveChanges() == 1;
+                if (ctx.Pets.Find(model.PetId) == null)
+                {
+                    ctx.Reminders.Add(entity);
+                    return ctx.SaveChanges() == 1;
+                }
+                else
+                {
+                    var entry =
+                    ctx
+                    .Reminders
+                    .Single(e => e.PetId == model.PetId);
+
+                    entry.HeartwormMed = model.HeartwormMed;
+                    entry.RabiesVac = model.RabiesVac;
+                    entry.IsThreeYearRabiesVac = model.IsThreeYearRabiesVac;
+                    entry.FleaTreatment = model.FleaTreatment;
+                    entry.NailTrim = model.NailTrim;
+                    entry.TrimSchedule = model.TrimSchedule;
+
+                    return ctx.SaveChanges() == 1;
+                }
             }
         }
 
         public IEnumerable<ReminderListItem> GetReminders()
         {
-            using( var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
@@ -56,7 +75,7 @@ namespace PetFocus.Services
 
         public ReminderDetail GetReminderById(int id)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
