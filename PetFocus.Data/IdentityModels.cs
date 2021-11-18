@@ -35,6 +35,7 @@ namespace PetFocus.Data
         public DbSet<Reminder> Reminders { get; set; }
         public DbSet<Weight> Weights { get; set; }
         public DbSet<HomemadeFood> HomemadeFoods { get; set; }
+        public DbSet<Diabetes> Diabetic { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

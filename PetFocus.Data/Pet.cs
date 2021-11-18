@@ -58,6 +58,7 @@ namespace PetFocus.Data
         public virtual Reminder Reminder { get; set; }
 
         public virtual ICollection<Weight> Weights { get; set; } = new List<Weight>();
+        public virtual ICollection<Diabetes> Diabetic { get; set; } = new List<Diabetes>();
         public virtual ICollection<HomemadeFood> HomemadeFoods { get; set; } = new List<HomemadeFood>();
     }
 }
