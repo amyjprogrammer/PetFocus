@@ -1,0 +1,80 @@
+﻿@model PetFocus.Models.ReminderModel.ReminderDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ReminderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PetId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeartwormMed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeartwormMed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RabiesVac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RabiesVac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsThreeYearRabiesVac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsThreeYearRabiesVac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FleaTreatment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FleaTreatment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NailTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NailTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrimSchedule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrimSchedule)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

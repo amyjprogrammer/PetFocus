@@ -94,6 +94,25 @@ namespace PetFocus.WebMVC.Controllers
             return View(model);
         }
 
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreatePetService();
+            var model = svc.GetPetById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePet(int id)
+        {
+            var service = CreatePetService();
+            service.DeletePet(id);
+            TempData["SaveResult"] = "Your pet was deleted.";
+            return RedirectToAction("Index");
+        }
+
         private PetService CreatePetService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

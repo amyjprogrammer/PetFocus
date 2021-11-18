@@ -95,5 +95,20 @@ namespace PetFocus.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteReminder(int reminderId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Reminders
+                    .Single(e => e.PetId == reminderId);
+
+                ctx.Reminders.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

@@ -90,5 +90,25 @@ namespace PetFocus.WebMVC.Controllers
             ModelState.AddModelError("", "Your reminder could not be updated.");
             return View(model);
         }
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var service = new ReminderService();
+            var model = service.GetReminderById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteReminder(int id)
+        {
+            var service = new ReminderService();
+            service.DeleteReminder(id);
+            TempData["SaveResult"] = "Your reminder was deleted.";
+            return RedirectToAction("Index");
+        }
     }
 }

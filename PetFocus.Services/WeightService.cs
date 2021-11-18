@@ -81,5 +81,19 @@ namespace PetFocus.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteWeight(int weightId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Weights
+                    .Single(e => e.WeightId == weightId);
+
+                ctx.Weights.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

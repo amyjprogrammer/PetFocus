@@ -85,5 +85,25 @@ namespace PetFocus.WebMVC.Controllers
             ModelState.AddModelError("", "Your weight could not be updated.");
             return View(model);
         }
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var service = new WeightService();
+            var model = service.GetWeightById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteWeight(int id)
+        {
+            var service = new WeightService();
+            service.DeleteWeight(id);
+            TempData["SaveResult"] = "Your weight was deleted.";
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -250,6 +250,9 @@
     <Content Include="Views\Weight\Edit.cshtml" />
     <Content Include="Views\Reminder\Edit.cshtml" />
     <Content Include="Views\Pet\Edit.cshtml" />
+    <Content Include="Views\Pet\Delete.cshtml" />
+    <Content Include="Views\Reminder\Delete.cshtml" />
+    <Content Include="Views\Weight\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
