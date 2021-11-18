@@ -65,5 +65,21 @@ namespace PetFocus.Services
                     };
             }
         }
+
+        public bool UpdateWeight(WeightEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Weights
+                    .Single(e => e.WeightId == model.WeightId);
+
+                entity.PetWeight = model.PetWeight;
+                entity.WeightDate = model.WeightDate;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

@@ -48,5 +48,24 @@ namespace PetFocus.WebMVC.Controllers
 
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var service = new ReminderService();
+            var detail = service.GetReminderById(id);
+            var model =
+                new ReminderEdit
+                {
+                    PetId = detail.PetId,
+                    HeartwormMed = detail.HeartwormMed,
+                    RabiesVac = detail.RabiesVac,
+                    IsThreeYearRabiesVac = detail.IsThreeYearRabiesVac,
+                    FleaTreatment = detail.FleaTreatment,
+                    NailTrim = detail.NailTrim,
+                    TrimSchedule = detail.TrimSchedule
+                };
+
+            return View(model);
+        }
     }
 }

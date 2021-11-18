@@ -51,6 +51,26 @@ namespace PetFocus.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Edit(int id)
+        {
+            var svc = CreatePetService();
+            var detail = svc.GetPetById(id);
+            var model =
+                new PetEdit
+                {
+                    PetId = detail.PetId,
+                    PetName = detail.PetName,
+                    Species = detail.Species,
+                    PetSex = detail.PetSex,
+                    IsSpayedNeutered = detail.IsSpayedNeutered,
+                    Breed = detail.Breed,
+                    Birthdate = detail.Birthdate,
+                    MicrochipNum = detail.MicrochipNum,
+                    VetName = detail.VetName
+                };
+            return View(model);
+        }
+
         private PetService CreatePetService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

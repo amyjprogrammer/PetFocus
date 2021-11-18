@@ -96,5 +96,27 @@ namespace PetFocus.Services
                 return pet;
             }
         }
+
+        public bool UpdatePet(PetEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Pets
+                    .Single(e => e.PetId == model.PetId && e.OwnerId == _userId);
+
+                entity.PetName = model.PetName;
+                entity.Species = model.Species;
+                entity.PetSex = model.PetSex;
+                entity.IsSpayedNeutered = model.IsSpayedNeutered;
+                entity.Breed = model.Breed;
+                entity.Birthdate = model.Birthdate;
+                entity.MicrochipNum = model.MicrochipNum;
+                entity.VetName = model.VetName;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

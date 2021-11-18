@@ -75,5 +75,25 @@ namespace PetFocus.Services
                     };
             }
         }
+
+        public bool UpdateReminder(ReminderEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Reminders
+                    .Single(e => e.PetId == model.PetId);
+
+                entity.HeartwormMed = model.HeartwormMed;
+                entity.RabiesVac = model.RabiesVac;
+                entity.IsThreeYearRabiesVac = model.IsThreeYearRabiesVac;
+                entity.FleaTreatment = model.FleaTreatment;
+                entity.NailTrim = model.NailTrim;
+                entity.TrimSchedule = model.TrimSchedule;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

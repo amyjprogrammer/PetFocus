@@ -48,5 +48,19 @@ namespace PetFocus.WebMVC.Controllers
 
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var svc = new WeightService();
+            var detail = svc.GetWeightById(id);
+            var model =
+                new WeightEdit
+                {
+                    WeightId = detail.WeightId,
+                    PetWeight = detail.PetWeight,
+                    WeightDate = detail.WeightDate
+                };
+            return View(model);
+        }
     }
 }
