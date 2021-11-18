@@ -25,12 +25,7 @@ namespace PetFocus.Services
                 };
             using (var ctx = new ApplicationDbContext())
             {
-                if (ctx.Pets.Find(model.PetId) == null)
-                {
-                    ctx.Reminders.Add(entity);
-                    return ctx.SaveChanges() == 1;
-                }
-                else
+                if (ctx.Reminders.Find(model.PetId) != null)
                 {
                     var entry =
                     ctx
@@ -44,6 +39,11 @@ namespace PetFocus.Services
                     entry.NailTrim = model.NailTrim;
                     entry.TrimSchedule = model.TrimSchedule;
 
+                    return ctx.SaveChanges() == 1;
+                }
+                else
+                {
+                    ctx.Reminders.Add(entity);
                     return ctx.SaveChanges() == 1;
                 }
             }
