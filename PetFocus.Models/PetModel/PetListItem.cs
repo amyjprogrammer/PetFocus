@@ -26,7 +26,7 @@ namespace PetFocus.Models.PetModel
 
         public string Breed { get; set; }
 
-        public DateTimeOffset Birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
 
         [Display(Name = "MicroChip Number")]
         public string MicrochipNum { get; set; }

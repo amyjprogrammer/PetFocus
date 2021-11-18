@@ -1,5 +1,4 @@
-﻿@model IEnumerable<PetFocus.Models.PetModel.PetListItem>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,11 +27,11 @@
                         <li>@Html.ActionLink("Pets", "Index", "Pet")</li>
                         <li>@Html.ActionLink("Reminders", "Index", "Reminder")</li>
                         <li>@Html.ActionLink("WeightChart", "Index", "Weight")</li>
-                        var pet = new PetFocus.Data.Pet();
+                       @* var pet = new PetFocus.Data.Pet();
                             if (pet.HasDiabetes == true)
                             {
                                 <li>@Html.ActionLink("DiabetesTracker", "Index", "Diabetes")</li>
-                            }
+                            }*@
                     }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>

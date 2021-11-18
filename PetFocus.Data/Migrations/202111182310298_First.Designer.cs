@@ -7,13 +7,13 @@ namespace PetFocus.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Homemade : IMigrationMetadata
+    public sealed partial class First : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Homemade));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(First));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111171729497_Homemade"; }
+            get { return "202111182310298_First"; }
         }
         
         string IMigrationMetadata.Source

@@ -58,17 +58,9 @@
     <Compile Include="HomemadeFood.cs" />
     <Compile Include="HomemadeList.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202111170403189_First.cs" />
-    <Compile Include="Migrations\202111170403189_First.Designer.cs">
-      <DependentUpon>202111170403189_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111171729497_Homemade.cs" />
-    <Compile Include="Migrations\202111171729497_Homemade.Designer.cs">
-      <DependentUpon>202111171729497_Homemade.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111182237495_Diabetes.cs" />
-    <Compile Include="Migrations\202111182237495_Diabetes.Designer.cs">
-      <DependentUpon>202111182237495_Diabetes.cs</DependentUpon>
+    <Compile Include="Migrations\202111182310298_First.cs" />
+    <Compile Include="Migrations\202111182310298_First.Designer.cs">
+      <DependentUpon>202111182310298_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pet.cs" />
@@ -81,14 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111170403189_First.resx">
-      <DependentUpon>202111170403189_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111171729497_Homemade.resx">
-      <DependentUpon>202111171729497_Homemade.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111182237495_Diabetes.resx">
-      <DependentUpon>202111182237495_Diabetes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111182310298_First.resx">
+      <DependentUpon>202111182310298_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

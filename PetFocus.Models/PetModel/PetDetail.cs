@@ -1,4 +1,5 @@
 ﻿using PetFocus.Data;
+using PetFocus.Models.DiabetesModel;
 using PetFocus.Models.WeightModel;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace PetFocus.Models.PetModel
 
         public string Breed { get; set; }
 
-        public DateTimeOffset Birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
 
         [Display(Name = "MicroChip Number")]
         public string MicrochipNum { get; set; }
@@ -40,5 +41,6 @@ namespace PetFocus.Models.PetModel
         public Reminder Reminder { get; set; }
 
         public List<WeightListItem> Weights { get; set; } = new List<WeightListItem>();
+        public List<DiabetesListItem> Diabetic { get; set; } = new List<DiabetesListItem>();
     }
 }
