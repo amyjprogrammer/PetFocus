@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HomemadeFoodModel\HomemadeFoodListItem.cs" />
     <Compile Include="PetModel\PetCreate.cs" />
     <Compile Include="PetModel\PetDetail.cs" />
     <Compile Include="PetModel\PetEdit.cs" />
@@ -72,9 +73,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HomemadeFoodModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\PetFocus.Data\PetFocus.Data.csproj">
       <Project>{1A23AC66-53C2-4EC1-869A-18B8D823A7C2}</Project>

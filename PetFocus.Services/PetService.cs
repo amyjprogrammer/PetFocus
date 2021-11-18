@@ -31,7 +31,8 @@ namespace PetFocus.Services
                     Breed = model.Breed,
                     Birthdate = model.Birthdate,
                     MicrochipNum = model.MicrochipNum,
-                    VetName = model.VetName
+                    VetName = model.VetName, 
+                    HasDiabetes = model.HasDiabetes
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -61,6 +62,7 @@ namespace PetFocus.Services
                             Birthdate = e.Birthdate,
                             MicrochipNum = e.MicrochipNum,
                             VetName = e.VetName,
+                            HasDiabetes = e.HasDiabetes
                         }
                         );
                 return query.ToArray();
@@ -86,6 +88,7 @@ namespace PetFocus.Services
                         Birthdate = entity.Birthdate,
                         MicrochipNum = entity.MicrochipNum,
                         VetName = entity.VetName,
+                        HasDiabetes = entity.HasDiabetes,
                         Reminder = entity.Reminder
                     };
                 foreach(var weight in entity.Weights)
@@ -114,6 +117,7 @@ namespace PetFocus.Services
                 entity.Birthdate = model.Birthdate;
                 entity.MicrochipNum = model.MicrochipNum;
                 entity.VetName = model.VetName;
+                entity.HasDiabetes = model.HasDiabetes;
 
                 return ctx.SaveChanges() == 1;
             }

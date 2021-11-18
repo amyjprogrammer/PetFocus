@@ -66,7 +66,8 @@ namespace PetFocus.WebMVC.Controllers
                     Breed = detail.Breed,
                     Birthdate = detail.Birthdate,
                     MicrochipNum = detail.MicrochipNum,
-                    VetName = detail.VetName
+                    VetName = detail.VetName,
+                    HasDiabetes = detail.HasDiabetes
                 };
             return View(model);
         }

@@ -52,6 +52,9 @@ namespace PetFocus.Data
         [Display(Name ="Veterinarian's Name")]
         public string VetName { get; set; }
 
+        [Display(Name = "Has Diabetes")]
+        public bool HasDiabetes { get; set; }
+
         public virtual Reminder Reminder { get; set; }
 
         public virtual ICollection<Weight> Weights { get; set; } = new List<Weight>();

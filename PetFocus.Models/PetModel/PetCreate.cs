@@ -37,5 +37,8 @@ namespace PetFocus.Models.PetModel
 
         [Display(Name = "Veterinarian's Name")]
         public string VetName { get; set; }
+
+        [Display(Name = "Has Diabetes")]
+        public bool HasDiabetes { get; set; }
     }
 }
