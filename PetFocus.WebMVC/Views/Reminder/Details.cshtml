@@ -1,0 +1,74 @@
+﻿@model PetFocus.Models.ReminderModel.ReminderDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReminderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PetId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeartwormMed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeartwormMed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RabiesVac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RabiesVac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsThreeYearRabiesVac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsThreeYearRabiesVac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FleaTreatment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FleaTreatment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NailTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NailTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrimSchedule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrimSchedule)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PetId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

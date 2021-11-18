@@ -1,0 +1,42 @@
+﻿@model PetFocus.Models.WeightModel.WeightDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WeightDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WeightId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeightId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeightDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeightDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WeightId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

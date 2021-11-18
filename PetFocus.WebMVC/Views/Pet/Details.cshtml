@@ -1,0 +1,74 @@
+﻿@model PetFocus.Models.PetModel.PetDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PetDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PetId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSpayedNeutered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSpayedNeutered)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MicrochipNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MicrochipNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VetName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PetId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
