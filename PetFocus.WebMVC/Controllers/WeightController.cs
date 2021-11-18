@@ -62,5 +62,28 @@ namespace PetFocus.WebMVC.Controllers
                 };
             return View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, WeightEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.WeightId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = new WeightService();
+            if (service.UpdateWeight(model))
+            {
+                TempData["SaveResult"] = "Your weight was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your weight could not be updated.");
+            return View(model);
+        }
     }
 }

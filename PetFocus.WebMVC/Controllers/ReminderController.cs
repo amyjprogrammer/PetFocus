@@ -67,5 +67,28 @@ namespace PetFocus.WebMVC.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ReminderEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.PetId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = new ReminderService();
+            if (service.UpdateReminder(model))
+            {
+                TempData["SaveResult"] = "Your reminder was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your reminder could not be updated.");
+            return View(model);
+        }
     }
 }
