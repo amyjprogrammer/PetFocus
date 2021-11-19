@@ -22,6 +22,7 @@ namespace PetFocus.Data
 
         [Required]
         [Display(Name = "Date")]
+        [DataType(DataType.Date)]
         public DateTime DiabetesDate { get; set; }
     }
 }

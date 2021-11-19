@@ -1,7 +1,4 @@
-﻿
-@model System.DateTime?
-
-<span>
-    @(Model.HasValue ? Model.Value.ToString("MM/dd/yyyy") : "-")
-</span>
+﻿@model DateTime
+@Html.TextBox("", String.Format("{0:d}", Model.ToShortDateString()),
+  new { @class = "datefield", type = "date" })
 
