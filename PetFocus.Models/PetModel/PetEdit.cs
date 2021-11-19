@@ -25,6 +25,7 @@ namespace PetFocus.Models.PetModel
 
         public string Breed { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime Birthdate { get; set; }
 
         [Display(Name = "MicroChip Number")]
