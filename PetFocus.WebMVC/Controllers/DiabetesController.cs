@@ -86,5 +86,24 @@ namespace PetFocus.WebMVC.Controllers
             ModelState.AddModelError("", "Your diabetes input could not be updated.");
             return View(model);
         }
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = new DiabetesService();
+            var model = svc.GetDiabetesById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteDiabetes(int id)
+        {
+            var service = new DiabetesService();
+            service.DeleteDiabetes(id);
+            TempData["SaveResult"] = "Your diabetes entry was deleted.";
+            return RedirectToAction("Index");
+        }
     }
 }

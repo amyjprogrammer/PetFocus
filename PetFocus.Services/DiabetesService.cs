@@ -82,5 +82,19 @@ namespace PetFocus.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteDiabetes(int diabetesId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Diabetic
+                    .Single(e => e.DiabetesId == diabetesId);
+
+                ctx.Diabetic.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
