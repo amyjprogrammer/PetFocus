@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiabetesModel\DiabetesDetail.cs" />
+    <Compile Include="DiabetesModel\DiabetesEdit.cs" />
     <Compile Include="DiabetesModel\DiabetesListItem.cs" />
     <Compile Include="DiabetesModel\DiabetesCreate.cs" />
     <Compile Include="HomemadeFoodModel\HomemadeFoodListItem.cs" />

@@ -66,5 +66,21 @@ namespace PetFocus.Services
                     };
             }
         }
+
+        public bool UpdateDiabetes(DiabetesEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Diabetic
+                    .Single(e => e.DiabetesId == model.DiabetesId);
+
+                entity.DiabetesDate = model.DiabetesDate;
+                entity.Glucose = model.Glucose;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
