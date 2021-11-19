@@ -27,7 +27,10 @@
                         <li>@Html.ActionLink("Pets", "Index", "Pet")</li>
                         <li>@Html.ActionLink("Reminders", "Index", "Reminder")</li>
                         <li>@Html.ActionLink("WeightChart", "Index", "Weight")</li>
-                        <li>@Html.ActionLink("DiabetesTracker", "Index", "Diabetes")</li>
+                        if (ViewBag.DiabetesCheck == true)
+                        {
+                            <li>@Html.ActionLink("DiabetesTracker", "Index", "Diabetes")</li>
+                        }
 
                     }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
