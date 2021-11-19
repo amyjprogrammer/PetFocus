@@ -15,7 +15,8 @@ namespace PetFocus.WebMVC.Controllers
         // GET: Diabetes
         public ActionResult Index()
         {
-            var model = new DiabetesListItem[0];
+            var service = new DiabetesService();
+            var model = service.GetDiabetes();
             return View(model);
         }
 
@@ -39,6 +40,13 @@ namespace PetFocus.WebMVC.Controllers
             };
 
             ModelState.AddModelError("", "The diabetes entry could not be created.");
+            return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var svc = new DiabetesService();
+            var model = svc.GetDiabetesById(id);
             return View(model);
         }
     }

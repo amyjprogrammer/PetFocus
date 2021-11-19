@@ -1,0 +1,42 @@
+﻿@model PetFocus.Models.DiabetesModel.DiabetesDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DiabetesDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DiabetesId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiabetesId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Glucose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Glucose)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiabetesDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiabetesDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DiabetesId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

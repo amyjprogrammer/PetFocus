@@ -257,6 +257,7 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Diabetes\Index.cshtml" />
     <Content Include="Views\Diabetes\Create.cshtml" />
+    <Content Include="Views\Diabetes\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

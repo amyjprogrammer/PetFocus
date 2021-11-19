@@ -47,5 +47,24 @@ namespace PetFocus.Services
                 return query.ToArray();
             }
         }
+
+        public DiabetesDetail GetDiabetesById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Diabetic
+                    .Single(e => e.DiabetesId == id);
+                return
+                    new DiabetesDetail
+                    {
+                        DiabetesId = entity.DiabetesId,
+                        Pet = entity.Pet,
+                        Glucose = entity.Glucose,
+                        DiabetesDate = entity.DiabetesDate
+                    };
+            }
+        }
     }
 }
