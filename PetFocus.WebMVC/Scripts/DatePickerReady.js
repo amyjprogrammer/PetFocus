@@ -1,8 +1,3 @@
-﻿if (!Modernizr.inputtypes.date) {
-    $(function () {
-        $("input[type='date']")
-            .datepicker()
-            .get(0)
-            .setAttribute("type", "text");
-    })
-}
+﻿$(document).ready(function () {
+    $("#datepicker").datepicker({ dateFormat; 'MM/dd/yyyy'});
+});

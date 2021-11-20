@@ -304,6 +304,7 @@
     <Content Include="Views\Diabetes\Details.cshtml" />
     <Content Include="Views\Diabetes\Edit.cshtml" />
     <Content Include="Views\Diabetes\Delete.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
