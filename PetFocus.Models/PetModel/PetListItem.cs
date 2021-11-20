@@ -21,7 +21,7 @@ namespace PetFocus.Models.PetModel
         [Display(Name = "Sex")]
         public Sex PetSex { get; set; }
 
-        [Display(Name = "Is your pet spayed or neutered?")]
+        [Display(Name = "Spayed or neutered?")]
         public bool IsSpayedNeutered { get; set; }
 
         public string Breed { get; set; }
@@ -31,10 +31,10 @@ namespace PetFocus.Models.PetModel
         [Display(Name = "MicroChip Number")]
         public string MicrochipNum { get; set; }
 
-        [Display(Name = "Veterinarian's Name")]
+        [Display(Name = "Vet's Name")]
         public string VetName { get; set; }
 
-        [Display(Name = "Has Diabetes")]
+        [Display(Name = "Diabetes")]
         public bool HasDiabetes { get; set; }
 
     }

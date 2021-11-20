@@ -10,13 +10,13 @@
     <h4>PetDetail</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.PetId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.PetId)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.PetName)
@@ -25,7 +25,20 @@
         <dd>
             @Html.DisplayFor(model => model.PetName)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Species)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Species)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PetSex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetSex)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.IsSpayedNeutered)
         </dt>
