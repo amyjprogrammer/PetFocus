@@ -61,5 +61,12 @@ namespace PetFocus.Data
         public virtual ICollection<Weight> Weights { get; set; } = new List<Weight>();
         public virtual ICollection<Diabetes> Diabetic { get; set; } = new List<Diabetes>();
         public virtual ICollection<HomemadeFood> HomemadeFoods { get; set; } = new List<HomemadeFood>();
+
+        //to hold my enums 
+        public struct ConvertEnum
+        {
+            public int Value { get; set; }
+            public string Text { get; set; }
+        }
     }
 }

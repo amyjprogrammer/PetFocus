@@ -1,5 +1,12 @@
-﻿@model DateTime
+﻿@model Nullable<DateTime>
 
+@{
+    DateTime dt = DateTime.Now;
+    if (Model != null)
+    {
+        dt = (System.DateTime)Model;
 
-    @Html.TextBox("", Model, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker" })
+    }
+    @Html.TextBox("", String.Format("{0:d}", dt.ToShortDateString()), new { @class = "datefield", type = "date" })
+}
 

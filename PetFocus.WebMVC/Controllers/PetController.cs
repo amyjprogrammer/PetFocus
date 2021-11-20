@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PetFocus.Data;
 using PetFocus.Models.PetModel;
 using PetFocus.Services;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static PetFocus.Data.Pet;
 
 namespace PetFocus.WebMVC.Controllers
 {
@@ -28,6 +30,23 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Create()
         {
+            var petSpecies = new List<ConvertEnum>();
+            foreach (var species in Enum.GetValues(typeof(Species)))
+                petSpecies.Add(new ConvertEnum
+                {
+                    Value = (int) species, Text = species.ToString()
+                });
+            ViewBag.PetSpeciesEnum = petSpecies;
+
+            var petSex = new List<ConvertEnum>();
+            foreach (var sex in Enum.GetValues(typeof(Sex)))
+                petSex.Add(new ConvertEnum
+                {
+                    Value = (int)sex,
+                    Text = sex.ToString()
+                });
+            ViewBag.PetSexEnum = petSex;
+            
             return View();
         }
 
