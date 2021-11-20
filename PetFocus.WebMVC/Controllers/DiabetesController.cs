@@ -1,4 +1,5 @@
-﻿using PetFocus.Models.DiabetesModel;
+﻿using PetFocus.Data;
+using PetFocus.Models.DiabetesModel;
 using PetFocus.Models.HomemadeFoodModel;
 using PetFocus.Services;
 using System;
@@ -9,9 +10,10 @@ using System.Web.Mvc;
 
 namespace PetFocus.WebMVC.Controllers
 {
+    [Authorize]
     public class DiabetesController : Controller
     {
-        [Authorize]
+        private ApplicationDbContext _db = new ApplicationDbContext();
         // GET: Diabetes
         public ActionResult Index()
         {
@@ -22,6 +24,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.PetId = new SelectList(_db.Pets, "PetId", "PetName");
             return View();
         }
 

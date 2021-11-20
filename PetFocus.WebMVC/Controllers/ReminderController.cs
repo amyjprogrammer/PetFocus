@@ -1,4 +1,5 @@
-﻿using PetFocus.Models.ReminderModel;
+﻿using PetFocus.Data;
+using PetFocus.Models.ReminderModel;
 using PetFocus.Services;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,10 @@ using System.Web.Mvc;
 
 namespace PetFocus.WebMVC.Controllers
 {
+    [Authorize]
     public class ReminderController : Controller
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
         // GET: Reminder
         public ActionResult Index()
         {
@@ -20,6 +23,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.PetId = new SelectList(_db.Pets, "PetId", "PetName");
             return View();
         }
 

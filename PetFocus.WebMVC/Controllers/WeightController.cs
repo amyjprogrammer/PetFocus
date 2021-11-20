@@ -1,4 +1,5 @@
-﻿using PetFocus.Models.WeightModel;
+﻿using PetFocus.Data;
+using PetFocus.Models.WeightModel;
 using PetFocus.Services;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace PetFocus.WebMVC.Controllers
     [Authorize]
     public class WeightController : Controller
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
         // GET: Weight
         public ActionResult Index()
         {
@@ -20,6 +22,7 @@ namespace PetFocus.WebMVC.Controllers
         }
         public ActionResult Create()
         {
+            ViewBag.PetId = new SelectList(_db.Pets, "PetId", "PetName");
             return View();
         }
 
