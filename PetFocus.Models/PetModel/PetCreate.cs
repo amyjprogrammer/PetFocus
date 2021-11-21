@@ -30,6 +30,7 @@ namespace PetFocus.Models.PetModel
         public string Breed { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
 
         [Display(Name = "MicroChip Number")]

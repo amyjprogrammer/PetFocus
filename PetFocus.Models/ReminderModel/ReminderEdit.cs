@@ -12,7 +12,6 @@ namespace PetFocus.Models.ReminderModel
         public int PetId { get; set; }
 
         [Display(Name = "Last Date of Heartworm medication")]
-        [DataType(DataType.Date)]
         public DateTime HeartwormMed { get; set; }
 
         [Display(Name = "Last Date of Rabies Vaccination")]

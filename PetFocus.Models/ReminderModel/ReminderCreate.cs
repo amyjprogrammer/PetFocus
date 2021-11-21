@@ -13,21 +13,25 @@ namespace PetFocus.Models.ReminderModel
 
         [Required]
         [Display(Name = "Last Date of Heartworm medication")]
+        [DataType(DataType.Date)]
         public DateTime HeartwormMed { get; set; }
 
 
         [Display(Name = "Last Date of Rabies Vaccination")]
+        [DataType(DataType.Date)]
         public DateTime RabiesVac { get; set; }
 
-        [Display(Name = "Was it a three year rabies vaccination?")]
+        [Display(Name = "Three year rabies vaccination?")]
         public bool IsThreeYearRabiesVac { get; set; }
 
 
         [Display(Name = "Last Date of Flea treatment")]
+        [DataType(DataType.Date)]
         public DateTime FleaTreatment { get; set; }
 
 
         [Display(Name = "Last Date of Nail Trim")]
+        [DataType(DataType.Date)]
         public DateTime NailTrim { get; set; }
 
         [Display(Name = "How often do you trim the nails in days?")]
