@@ -14,6 +14,7 @@ namespace PetFocus.Models.DiabetesModel
         public double Glucose { get; set; }
 
         [Display(Name = "Date")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DiabetesDate { get; set; }
     }
 }

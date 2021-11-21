@@ -13,10 +13,18 @@ namespace PetFocus.WebMVC.Controllers
     public class WeightController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
+
+        WeightService service = null;
+
+        public WeightController()
+        {
+            service = new WeightService();
+        }
+
         // GET: Weight
         public ActionResult Index()
         {
-            var service = new WeightService();
+            /*var service = new WeightService();*/
             var model = service.GetWeights();
             return View(model);
         }
@@ -32,7 +40,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = new WeightService();
+            /*var service = new WeightService();*/
 
             if (service.CreateWeight(model))
             {
@@ -46,7 +54,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var service = new WeightService();
+           /* var service = new WeightService();*/
             var model = service.GetWeightById(id);
 
             return View(model);
@@ -54,8 +62,8 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            var svc = new WeightService();
-            var detail = svc.GetWeightById(id);
+            /*var svc = new WeightService();*/
+            var detail = service.GetWeightById(id);
             var model =
                 new WeightEdit
                 {
@@ -78,7 +86,7 @@ namespace PetFocus.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = new WeightService();
+            /*var service = new WeightService();*/
             if (service.UpdateWeight(model))
             {
                 TempData["SaveResult"] = "Your weight was updated.";
@@ -92,7 +100,7 @@ namespace PetFocus.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var service = new WeightService();
+            /*var service = new WeightService();*/
             var model = service.GetWeightById(id);
 
             return View(model);
@@ -103,10 +111,16 @@ namespace PetFocus.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteWeight(int id)
         {
-            var service = new WeightService();
+            /*var service = new WeightService();*/
             service.DeleteWeight(id);
             TempData["SaveResult"] = "Your weight was deleted.";
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Dashboard()
+        {
+            var list = service.GetWeights();
+            return View();
         }
     }
 }

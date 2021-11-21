@@ -12,6 +12,7 @@ namespace PetFocus.Models.ReminderModel
         public int PetId { get; set; }
 
         [Display(Name = "Last Date of Heartworm medication")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime HeartwormMed { get; set; }
 
         [Display(Name = "Last Date of Rabies Vaccination")]

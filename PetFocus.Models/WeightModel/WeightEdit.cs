@@ -15,6 +15,7 @@ namespace PetFocus.Models.WeightModel
         public double PetWeight { get; set; }
 
         [Display(Name = "Date")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime WeightDate { get; set; }
     }
 }
