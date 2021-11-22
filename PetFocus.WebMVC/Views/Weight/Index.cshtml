@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Weight Chart</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -21,7 +21,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.WeightId)
+            @Html.DisplayNameFor(model => model.Pet.PetName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PetWeight)
@@ -36,7 +36,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.WeightId)
+                @Html.DisplayFor(modelItem => item.Pet.PetName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PetWeight)

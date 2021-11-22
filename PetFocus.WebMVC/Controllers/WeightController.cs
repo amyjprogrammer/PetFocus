@@ -67,6 +67,7 @@ namespace PetFocus.WebMVC.Controllers
             var model =
                 new WeightEdit
                 {
+                    Pet = detail.Pet,
                     WeightId = detail.WeightId,
                     PetWeight = detail.PetWeight,
                     WeightDate = detail.WeightDate

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetFocus.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace PetFocus.Models.WeightModel
 {
     public class WeightEdit
     {
+        public Pet Pet { get; set; }
         public int WeightId { get; set; }
 
         [Display(Name = "Pet Weight")]
