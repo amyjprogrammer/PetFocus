@@ -68,6 +68,7 @@ namespace PetFocus.WebMVC.Controllers
             var model =
                 new DiabetesEdit
                 {
+                    Pet = detail.Pet,
                     DiabetesId = detail.DiabetesId,
                     Glucose = detail.Glucose,
                     DiabetesDate = detail.DiabetesDate

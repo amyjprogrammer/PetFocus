@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Diabetes Tracker</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -21,7 +21,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DiabetesId)
+            @Html.DisplayNameFor(model => model.Pet.PetName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Glucose)
@@ -36,7 +36,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DiabetesId)
+                @Html.DisplayFor(modelItem => item.Pet.PetName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Glucose)
