@@ -67,6 +67,28 @@ namespace PetFocus.Services
             }
         }
 
+        public IEnumerable<DiabetesListItem> GetDiabetesByPetId(int petId)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Diabetic
+                    .Where(e => e.Pet.PetId == petId)
+                    .Select(
+                        e =>
+                        new DiabetesListItem
+                        {
+                            Pet = e.Pet,
+                            DiabetesId = e.DiabetesId,
+                            Glucose = e.Glucose,
+                            DiabetesDate =e.DiabetesDate
+                        }
+                        );
+                return query.ToArray();
+            }
+        }
+
         public bool UpdateDiabetes(DiabetesEdit model)
         {
             using (var ctx = new ApplicationDbContext())

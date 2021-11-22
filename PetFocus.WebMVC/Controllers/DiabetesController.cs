@@ -117,9 +117,9 @@ namespace PetFocus.WebMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Dashboard()
+        public ActionResult Dashboard(int petId)
         {
-            var list = service.GetDiabetes();
+            var list = service.GetDiabetesByPetId(petId);
             var diabetes = list.Select(x => x.Glucose).ToList();
             var dates = list.Select(x => x.DiabetesDate.ToString("yy-MM-dd").ToList());
 
