@@ -120,6 +120,11 @@ namespace PetFocus.WebMVC.Controllers
         public ActionResult Dashboard()
         {
             var list = service.GetWeights();
+            var weights = list.Select(x => x.PetWeight).ToList();
+            var dates = list.Select(x => x.WeightDate.ToString("yy-MM-dd").ToList());
+
+            ViewBag.Weights = weights;
+            ViewBag.Dates = dates;
             return View();
         }
     }

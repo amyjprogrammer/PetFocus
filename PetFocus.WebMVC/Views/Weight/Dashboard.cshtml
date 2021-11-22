@@ -19,6 +19,40 @@
     <div id="chart_container">
         <canvas id="bar_chart"></canvas>
     </div>
+    <script>
+        var weightsArray = @Html.Raw(Json.Encode(ViewBag.Weights));
+        var datesArray = @Html.Raw(Json.Encode(ViewBag.Dates));
+
+        var ctx = $("#bar_chart");
+        var barChart = new Chart(ctx, {
+
+            type: 'line',
+            data: {
+                labels: datesArray,
+                datasets: [{
+                    label: "Weight over Time",
+                    data: weightsArray,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1,
+                    fill: false,
+                    borderWidth: 1
+                }]
+            },
+
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+
+        });
+    </script>
+
 </body>
 </html>
 
