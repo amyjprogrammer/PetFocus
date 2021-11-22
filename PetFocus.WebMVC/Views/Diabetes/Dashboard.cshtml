@@ -1,0 +1,58 @@
+﻿<html>
+<head>
+    <script src="~/Scripts/Chart.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        #chart_container {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            padding: 1px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart_container">
+        <canvas id="bar_chart"></canvas>
+    </div>
+    <script>
+        var diabetesArray = @Html.Raw(Json.Encode(ViewBag.Diabetes));
+        var datesArray = @Html.Raw(Json.Encode(ViewBag.Dates));
+
+        var ctx = $("#bar_chart");
+        var barChart = new Chart(ctx, {
+
+            type: 'line',
+            data: {
+                labels: datesArray,
+                datasets: [{
+                    label: "Diabetes over Time",
+                    data: diabetesArray,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1,
+                    fill: false,
+                    borderWidth: 1
+                }]
+            },
+
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+
+        });
+    </script>
+
+</body>
+</html>
+

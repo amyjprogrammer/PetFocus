@@ -14,10 +14,18 @@ namespace PetFocus.WebMVC.Controllers
     public class DiabetesController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
+
+        DiabetesService service = null;
+
+        public DiabetesController()
+        {
+            service = new DiabetesService();
+        }
+
         // GET: Diabetes
         public ActionResult Index()
         {
-            var service = new DiabetesService();
+            /*var service = new DiabetesService();*/
             var model = service.GetDiabetes();
             return View(model);
         }
@@ -34,7 +42,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = new DiabetesService();
+            /*var service = new DiabetesService();*/
 
             if (service.CreateDiabetes(model))
             {
@@ -48,15 +56,15 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var svc = new DiabetesService();
-            var model = svc.GetDiabetesById(id);
+            /*var svc = new DiabetesService();*/
+            var model = service.GetDiabetesById(id);
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            var svc = new DiabetesService();
-            var detail = svc.GetDiabetesById(id);
+            /*var svc = new DiabetesService();*/
+            var detail = service.GetDiabetesById(id);
             var model =
                 new DiabetesEdit
                 {
@@ -79,7 +87,7 @@ namespace PetFocus.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = new DiabetesService();
+            /*var service = new DiabetesService();*/
             if (service.UpdateDiabetes(model))
             {
                 TempData["SaveResult"] = "Your diabetes input was updated.";
@@ -93,8 +101,8 @@ namespace PetFocus.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var svc = new DiabetesService();
-            var model = svc.GetDiabetesById(id);
+            /*var svc = new DiabetesService();*/
+            var model = service.GetDiabetesById(id);
             return View(model);
         }
 
@@ -103,10 +111,21 @@ namespace PetFocus.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteDiabetes(int id)
         {
-            var service = new DiabetesService();
+            /*var service = new DiabetesService();*/
             service.DeleteDiabetes(id);
             TempData["SaveResult"] = "Your diabetes entry was deleted.";
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Dashboard()
+        {
+            var list = service.GetDiabetes();
+            var diabetes = list.Select(x => x.Glucose).ToList();
+            var dates = list.Select(x => x.DiabetesDate.ToString("yy-MM-dd").ToList());
+
+            ViewBag.Diabetes = diabetes;
+            ViewBag.Dates = dates;
+            return View();
         }
     }
 }
