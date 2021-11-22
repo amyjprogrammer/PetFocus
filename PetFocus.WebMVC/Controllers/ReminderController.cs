@@ -23,7 +23,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.PetId = new SelectList(_db.Pets, "PetId", "PetName");
+            ViewBag.ReminderId = new SelectList(_db.Pets, "PetId", "PetName");
             return View();
         }
 
@@ -60,7 +60,8 @@ namespace PetFocus.WebMVC.Controllers
             var model =
                 new ReminderEdit
                 {
-                    PetId = detail.PetId,
+                    Pet = detail.Pet,
+                    ReminderId = detail.ReminderId,
                     HeartwormMed = detail.HeartwormMed,
                     RabiesVac = detail.RabiesVac,
                     IsThreeYearRabiesVac = detail.IsThreeYearRabiesVac,
@@ -78,7 +79,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (model.PetId != id)
+            if (model.ReminderId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);

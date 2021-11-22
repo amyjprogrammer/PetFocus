@@ -9,6 +9,8 @@ namespace PetFocus.Models.ReminderModel
 {
     public class ReminderCreate
     {
+        public int ReminderId { get; set; }
+
         public int PetId { get; set; }
 
         [Required]

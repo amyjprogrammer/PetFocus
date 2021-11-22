@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetFocus.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace PetFocus.Models.ReminderModel
 {
     public class ReminderEdit
     {
-        public int PetId { get; set; }
+        public int ReminderId { get; set; }
+
+        public Pet Pet { get; set; }
 
         [Display(Name = "Last Date of Heartworm medication")]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
