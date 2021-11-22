@@ -61,7 +61,6 @@ namespace PetFocus.WebMVC.Controllers
                 new ReminderEdit
                 {
                     Pet = detail.Pet,
-                    ReminderId = detail.ReminderId,
                     HeartwormMed = detail.HeartwormMed,
                     RabiesVac = detail.RabiesVac,
                     IsThreeYearRabiesVac = detail.IsThreeYearRabiesVac,
@@ -79,7 +78,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (model.ReminderId != id)
+            if (model.PetId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);

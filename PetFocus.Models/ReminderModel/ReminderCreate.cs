@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetFocus.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace PetFocus.Models.ReminderModel
 {
     public class ReminderCreate
     {
-        public int ReminderId { get; set; }
-
         public int PetId { get; set; }
+
+        public Pet Pet { get; set; }
 
         [Required]
         [Display(Name = "Last Date of Heartworm medication")]

@@ -15,7 +15,7 @@ namespace PetFocus.Services
             var entity =
                 new Reminder()
                 {
-                    ReminderId = model.ReminderId,
+                    PetId = model.PetId,
                     HeartwormMed = model.HeartwormMed,
                     RabiesVac = model.RabiesVac,
                     IsThreeYearRabiesVac = model.IsThreeYearRabiesVac,
@@ -25,12 +25,12 @@ namespace PetFocus.Services
                 };
             using (var ctx = new ApplicationDbContext())
             {
-                if (ctx.Reminders.Find(model.ReminderId) != null)
+                if (ctx.Reminders.Find(model.PetId) != null)
                 {
                     var entry =
                     ctx
                     .Reminders
-                    .Single(e => e.ReminderId == model.ReminderId);
+                    .Single(e => e.PetId == model.PetId);
 
                     entry.HeartwormMed = model.HeartwormMed;
                     entry.RabiesVac = model.RabiesVac;
@@ -60,13 +60,14 @@ namespace PetFocus.Services
                         e =>
                         new ReminderListItem
                         {
-                            ReminderId = e.ReminderId,
+                            PetId = e.PetId,
                             HeartwormMed = e.HeartwormMed,
                             RabiesVac = e.RabiesVac,
                             IsThreeYearRabiesVac = e.IsThreeYearRabiesVac,
                             FleaTreatment = e.FleaTreatment,
                             NailTrim = e.NailTrim,
-                            TrimSchedule = e.TrimSchedule
+                            TrimSchedule = e.TrimSchedule, 
+                            Pet = e.Pet
                         }
                         );
                 return query.ToArray();
@@ -80,11 +81,11 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Reminders
-                    .Single(e => e.ReminderId == id);
+                    .Single(e => e.PetId == id);
                 return
                     new ReminderDetail
                     {
-                        ReminderId = entity.ReminderId,
+                        PetId = entity.PetId,
                         HeartwormMed = entity.HeartwormMed,
                         RabiesVac = entity.RabiesVac,
                         IsThreeYearRabiesVac = entity.IsThreeYearRabiesVac,
@@ -102,7 +103,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Reminders
-                    .Single(e => e.ReminderId == model.ReminderId);
+                    .Single(e => e.PetId == model.PetId);
 
                 entity.HeartwormMed = model.HeartwormMed;
                 entity.RabiesVac = model.RabiesVac;
@@ -122,7 +123,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Reminders
-                    .Single(e => e.ReminderId == reminderId);
+                    .Single(e => e.PetId == reminderId);
 
                 ctx.Reminders.Remove(entity);
 

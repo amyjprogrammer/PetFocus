@@ -12,7 +12,7 @@ namespace PetFocus.Data
     {
         [Key]
         [ForeignKey("Pet")]
-        public int ReminderId { get; set; }
+        public int PetId { get; set; }
 
         public virtual Pet Pet { get; set; }
 
