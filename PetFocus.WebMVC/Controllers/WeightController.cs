@@ -60,6 +60,12 @@ namespace PetFocus.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult DetailsByPetId(int petId)
+        {
+            var model = service.GetWeightByPetId(petId);
+            return View(model);
+        }
+
         public ActionResult Edit(int id)
         {
             /*var svc = new WeightService();*/
@@ -118,9 +124,9 @@ namespace PetFocus.WebMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Dashboard()
+        public ActionResult Dashboard(int petId)
         {
-            var list = service.GetWeights();
+            var list = service.GetWeightByPetId(petId);
             var weights = list.Select(x => x.PetWeight).ToList();
             var dates = list.Select(x => x.WeightDate.ToString("yy-MM-dd").ToList());
 

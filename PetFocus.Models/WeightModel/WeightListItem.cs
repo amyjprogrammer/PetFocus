@@ -19,5 +19,7 @@ namespace PetFocus.Models.WeightModel
 
         [Display(Name = "Date")]
         public DateTime WeightDate { get; set; }
+
+        public int PetId { get; set; }
     }
 }

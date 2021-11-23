@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PetFocus.Models.WeightModel.WeightListItem>
+
+@{
+    ViewBag.Title = "DetailsByPetId";
+}
+
+<h2>Pet- Weight</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pet.PetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WeightId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetWeight)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pet.PetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WeightDate)
+        </td>
+        <td>
+            @Html.ActionLink("Weight Home", "Index") 
+        </td>
+    </tr>
+}
+
+</table>

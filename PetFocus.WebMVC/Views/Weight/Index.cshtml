@@ -47,7 +47,9 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.WeightId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.WeightId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.WeightId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.WeightId }) |
+                @Html.ActionLink("Review by Pet", "DetailsByPetId", new {petId = item.PetId}) |
+                @Html.ActionLink("Dashboard", "Dashboard", new {petId = item.PetId}) 
             </td>
         </tr>
     }

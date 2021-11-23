@@ -40,7 +40,8 @@ namespace PetFocus.Services
                             WeightId = e.WeightId,
                             Pet = e.Pet,
                             PetWeight = e.PetWeight,
-                            WeightDate = e.WeightDate
+                            WeightDate = e.WeightDate,
+                            PetId = e.PetId
                         }
                         );
                 return query.ToArray();
@@ -63,6 +64,29 @@ namespace PetFocus.Services
                         PetWeight = entity.PetWeight,
                         WeightDate = entity.WeightDate
                     };
+            }
+        }
+
+        public IEnumerable<WeightListItem> GetWeightByPetId(int petId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Weights
+                    .Where(e => e.PetId == petId)
+                    .Select(
+                        e =>
+                        new WeightListItem
+                        {
+                            Pet = e.Pet,
+                            PetWeight = e.PetWeight,
+                            WeightId = e.WeightId,
+                            WeightDate = e.WeightDate,
+                            PetId = e.PetId
+                        }
+                        );
+                return query.ToArray();
             }
         }
 

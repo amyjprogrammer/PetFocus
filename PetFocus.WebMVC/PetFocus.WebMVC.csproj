@@ -312,6 +312,7 @@
     <Content Include="Views\Weight\Dashboard.cshtml" />
     <Content Include="Views\Diabetes\Dashboard.cshtml" />
     <Content Include="Views\Diabetes\DetailsByPetId.cshtml" />
+    <Content Include="Views\Weight\DetailsByPetId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
