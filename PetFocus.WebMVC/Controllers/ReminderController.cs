@@ -49,18 +49,19 @@ namespace PetFocus.WebMVC.Controllers
         {
             var service = new ReminderService();
             var model = service.GetReminderById(id);
+            ViewBag.ReminderId = new SelectList(_db.Pets, "PetId", "PetName");
 
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
+            ViewBag.ReminderId = new SelectList(_db.Pets, "PetId", "PetName");
             var service = new ReminderService();
             var detail = service.GetReminderById(id);
             var model =
                 new ReminderEdit
                 {
-                    Pet = detail.Pet,
                     HeartwormMed = detail.HeartwormMed,
                     RabiesVac = detail.RabiesVac,
                     IsThreeYearRabiesVac = detail.IsThreeYearRabiesVac,
