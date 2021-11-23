@@ -58,6 +58,15 @@
     <Compile Include="HomemadeFood.cs" />
     <Compile Include="HomemadeList.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202111222356391_InitialCreate.cs" />
+    <Compile Include="Migrations\202111222356391_InitialCreate.Designer.cs">
+      <DependentUpon>202111222356391_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111230256316_FirstTry.cs" />
+    <Compile Include="Migrations\202111230256316_FirstTry.Designer.cs">
+      <DependentUpon>202111230256316_FirstTry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reminder.cs" />
@@ -115,6 +124,14 @@
     <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.13.0.js" />
     <Content Include="Scripts\jquery-ui-1.13.0.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111222356391_InitialCreate.resx">
+      <DependentUpon>202111222356391_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111230256316_FirstTry.resx">
+      <DependentUpon>202111230256316_FirstTry.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

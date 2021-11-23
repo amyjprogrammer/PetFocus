@@ -10,7 +10,7 @@ namespace PetFocus.Models.ReminderModel
 {
     public class ReminderEdit
     {
-        public int PetId { get; set; }
+        public int ReminderId { get; set; }
 
         [Display(Name = "Last Date of Heartworm medication")]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]

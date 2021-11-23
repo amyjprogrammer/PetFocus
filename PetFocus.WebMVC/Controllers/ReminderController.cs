@@ -56,12 +56,13 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            ViewBag.ReminderId = new SelectList(_db.Pets, "PetId", "PetName");
+            /*ViewBag.ReminderId = new SelectList(_db.Pets, "PetId", "PetName");*/
             var service = new ReminderService();
             var detail = service.GetReminderById(id);
             var model =
                 new ReminderEdit
                 {
+                    ReminderId = detail.ReminderId,
                     HeartwormMed = detail.HeartwormMed,
                     RabiesVac = detail.RabiesVac,
                     IsThreeYearRabiesVac = detail.IsThreeYearRabiesVac,
@@ -77,9 +78,10 @@ namespace PetFocus.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ReminderEdit model)
         {
+            /*ModelState.Clear();*/
             if (!ModelState.IsValid) return View(model);
 
-            if (model.PetId != id)
+            if (model.ReminderId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
