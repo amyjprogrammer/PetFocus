@@ -61,6 +61,12 @@ namespace PetFocus.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult DetailsByPetId(int petId)
+        {
+            var model = service.GetDiabetesByPetId(petId);
+            return View(model);
+        }
+
         public ActionResult Edit(int id)
         {
             /*var svc = new DiabetesService();*/

@@ -41,7 +41,8 @@ namespace PetFocus.Services
                             DiabetesId = e.DiabetesId,
                             Pet = e.Pet,
                             Glucose = e.Glucose,
-                            DiabetesDate = e.DiabetesDate
+                            DiabetesDate = e.DiabetesDate, 
+                            PetId = e.PetId
                         }
                         );
                 return query.ToArray();
@@ -74,7 +75,7 @@ namespace PetFocus.Services
                 var query =
                     ctx
                     .Diabetic
-                    .Where(e => e.Pet.PetId == petId)
+                    .Where(e => e.PetId == petId)
                     .Select(
                         e =>
                         new DiabetesListItem
@@ -82,7 +83,8 @@ namespace PetFocus.Services
                             Pet = e.Pet,
                             DiabetesId = e.DiabetesId,
                             Glucose = e.Glucose,
-                            DiabetesDate =e.DiabetesDate
+                            DiabetesDate =e.DiabetesDate, 
+                            PetId = e.PetId
                         }
                         );
                 return query.ToArray();

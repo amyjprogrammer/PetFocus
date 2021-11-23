@@ -18,5 +18,6 @@ namespace PetFocus.Models.DiabetesModel
 
         [Display(Name = "Date")]
         public DateTime DiabetesDate { get; set; }
+        public int PetId { get; set; }
     }
 }

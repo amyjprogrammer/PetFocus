@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PetFocus.Models.DiabetesModel.DiabetesListItem>
+
+@{
+    ViewBag.Title = "DetailsByPetId";
+}
+
+<h2>Pet </h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pet.PetName)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Glucose)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiabetesDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pet.PetName)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Glucose)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiabetesDate)
+        </td>
+        <td>
+            @Html.ActionLink("Diabetes Home", "Index") 
+            
+        </td>
+    </tr>
+}
+
+</table>
