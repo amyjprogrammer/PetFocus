@@ -12,6 +12,8 @@ namespace PetFocus.Models.ReminderModel
     {
         public int ReminderId { get; set; }
 
+        public int PetId { get; set; }
+
 
         [Required]
         [Display(Name = "Last Date of Heartworm medication")]

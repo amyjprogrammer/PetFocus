@@ -4,6 +4,23 @@
     ViewBag.Title = "DetailsByPetId";
 }
 
+<head>
+    <script src="~/Scripts/Chart.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        #chart_container {
+            width: 1200px;
+            height: 600px;
+            border: 2px solid black;
+            padding: 1.25em;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
 <h2>Pet- Weight</h2>
 
 
@@ -21,21 +38,58 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pet.PetName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetWeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WeightDate)
-        </td>
-        <td>
-            @Html.ActionLink("Weight Home", "Index") 
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pet.PetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeightDate)
+            </td>
+            <td>
+                @Html.ActionLink("Weight Home", "Index")
+            </td>
+        </tr>
+    }
 
 </table>
+
+<br />
+
+<br />
+<div id="chart_container">
+    <canvas id="bar_chart"></canvas>
+</div>
+<script>
+        var weightsArray = @Html.Raw(Json.Encode(ViewBag.Weights));
+        var datesArray = @Html.Raw(Json.Encode(ViewBag.Dates));
+
+        var ctx = $("#bar_chart");
+        var barChart = new Chart(ctx, {
+
+            type: 'bar',
+            data: {
+                labels: datesArray,
+                datasets: [{
+                    label: "Weight over Time",
+                    data: weightsArray,
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                    borderWidth: 1
+                }]
+            },
+
+            options: {
+                maintainAspectRatio: false,
+                legend: {
+                    labels: {
+                        fontSize: 16,
+                    }
+                }
+            }
+        });
+</script>

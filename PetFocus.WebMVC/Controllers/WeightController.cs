@@ -63,6 +63,12 @@ namespace PetFocus.WebMVC.Controllers
         public ActionResult DetailsByPetId(int petId)
         {
             var model = service.GetWeightByPetId(petId);
+            var weights = model.Select(x => x.PetWeight).ToList();
+            var dates = model.Select(x => x.WeightDate.ToString("MM/dd/yy").ToList());
+
+            ViewBag.Weights = weights;
+            ViewBag.Dates = dates;
+
             return View(model);
         }
 
