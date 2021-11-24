@@ -128,7 +128,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             var list = service.GetWeightByPetId(petId);
             var weights = list.Select(x => x.PetWeight).ToList();
-            var dates = list.Select(x => x.WeightDate.ToString("yy-MM-dd").ToList());
+            var dates = list.Select(x => x.WeightDate.ToString("MM/dd/yy").ToList());
 
             ViewBag.Weights = weights;
             ViewBag.Dates = dates;

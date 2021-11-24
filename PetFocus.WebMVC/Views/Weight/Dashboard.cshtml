@@ -11,10 +11,10 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <style>
         #chart_container {
-            width: 400px;
-            height: 400px;
-            border: 1px solid black;
-            padding: 1px;
+            width: 1200px;
+            height: 600px;
+            border: 2px solid black;
+            padding: 1.25em;
             border-radius: 4px;
         }
     </style>
@@ -35,30 +35,26 @@
         var ctx = $("#bar_chart");
         var barChart = new Chart(ctx, {
 
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: datesArray,
                 datasets: [{
                     label: "Weight over Time",
                     data: weightsArray,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1,
-                    fill: false,
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.3)',
                     borderWidth: 1
                 }]
             },
 
             options: {
                 maintainAspectRatio: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
+                legend: {
+                    labels: {
+                        fontSize: 16,
+                    }
                 }
             }
-
         });
     </script>
 

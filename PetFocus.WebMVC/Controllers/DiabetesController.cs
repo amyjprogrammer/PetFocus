@@ -128,7 +128,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             var list = service.GetDiabetesByPetId(petId);
             var diabetes = list.Select(x => x.Glucose).ToList();
-            var dates = list.Select(x => x.DiabetesDate.ToString("yy-MM-dd").ToList());
+            var dates = list.Select(x => x.DiabetesDate.ToString("MM/dd/yy").ToList());
 
             ViewBag.Diabetes = diabetes;
             ViewBag.Dates = dates;
