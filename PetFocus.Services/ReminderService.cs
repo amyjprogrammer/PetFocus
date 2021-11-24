@@ -15,7 +15,7 @@ namespace PetFocus.Services
             var entity =
                 new Reminder()
                 {
-                    ReminderId = model.ReminderId,
+                    /*ReminderId = model.ReminderId,*/
                     HeartwormMed = model.HeartwormMed,
                     RabiesVac = model.RabiesVac,
                     IsThreeYearRabiesVac = model.IsThreeYearRabiesVac,
@@ -23,6 +23,7 @@ namespace PetFocus.Services
                     NailTrim = model.NailTrim,
                     TrimSchedule = model.TrimSchedule
                 };
+
             using (var ctx = new ApplicationDbContext())
             {
                 if (ctx.Reminders.Find(model.ReminderId) != null)
@@ -43,6 +44,7 @@ namespace PetFocus.Services
                 }
                 else
                 {
+                    entity.ReminderId = model.PetId;
                     ctx.Reminders.Add(entity);
                     return ctx.SaveChanges() == 1;
                 }
