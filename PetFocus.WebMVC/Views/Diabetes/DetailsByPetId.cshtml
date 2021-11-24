@@ -4,6 +4,23 @@
     ViewBag.Title = "DetailsByPetId";
 }
 
+<head>
+    <script src="~/Scripts/Chart.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        #chart_container {
+            width: 1200px;
+            height: 600px;
+            border: 2px solid black;
+            padding: 1.25em;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
 <h2>Pet </h2>
 
 
@@ -12,7 +29,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Pet.PetName)
         </th>
-       
+
         <th>
             @Html.DisplayNameFor(model => model.Glucose)
         </th>
@@ -22,23 +39,71 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pet.PetName)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Glucose)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiabetesDate)
-        </td>
-        <td>
-            @Html.ActionLink("Diabetes Home", "Index") 
-            
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pet.PetName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Glucose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiabetesDate)
+            </td>
+            <td>
+                @Html.ActionLink("Diabetes Home", "Index")
+
+            </td>
+        </tr>
+    }
 
 </table>
+
+<br />
+<br />
+<div id="chart_container">
+    <canvas id="bar_chart"></canvas>
+</div>
+<script>
+        var diabetesArray = @Html.Raw(Json.Encode(ViewBag.Diabetes));
+        var datesArray = @Html.Raw(Json.Encode(ViewBag.Dates));
+
+        var ctx = $("#bar_chart");
+        var barChart = new Chart(ctx, {
+
+            type: 'line',
+            data: {
+                labels: datesArray,
+                datasets: [{
+                    label: "Diabetes over Time",
+                    data: diabetesArray,
+                    borderColor: 'rgb(96,11,176)',
+                    pointRadius: 6,
+                    pointBorderColor: 'rgb(71,3,19)',
+                    tension: 0.1,
+                    fill: false,
+                    borderWidth: 1,
+                    pointStyle: 'rectRot'
+                }]
+            },
+
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 60,
+                        }
+                    }]
+                },
+                legend: {
+                    labels: {
+                        fontSize: 16,
+                    }
+                }
+            }
+
+        });
+</script>
