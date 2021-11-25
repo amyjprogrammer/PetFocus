@@ -1,0 +1,67 @@
+﻿@model PetFocus.Data.HomemadeFood
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="AddIngredient" method="post">
+    <div id="editorRows">
+        <input type="hidden" name="" value="@Model.HomemadeFoodId" />
+        @foreach (var item in Model.HomemadeLists)
+        {
+            <partial name="HomemadeListEditor" model="item" />
+        }
+    </div>
+    <a id="addItem" asp-action="BlankHomemadeList" asp-controller="Homemade">Add Ingredient...</a>
+    <br />
+    <input type="submit" id="submit" value="Finished" />
+</form>
+
+@section scripts {
+    <script>
+        $("#submit").click(function (e) {
+            e.preventDefault();
+            var formData = new FormData();
+
+            $("input[name='HomemadeList.Ingredient']").each(function (i) {
+                var Ingredient = $(this).val();
+                formData.append("HomemadeLists[" + i + "].HomemadeList.Ingredient", Ingredient);
+
+            });
+            $("input[name='HomemadeList.Quantity']").each(function (i) {
+                var Quantity = $(this).val();
+                formData.append("HomemadeLists[" + i + "].HomemadeList.Quantity", Quantity);
+
+            });
+            
+
+            $.ajax({
+                method: 'post',
+                url: "Homemade/AddIngredient",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function () {
+
+                }
+            });
+
+        });
+
+        $("#addItem").click(function () {
+            $.ajax({
+                url: this.href,
+                cache: false,
+                success: function (html) { $("#editorRows").append(html); }
+            });
+            return false;
+        });
+
+        $("a.deleteRow").on("click", function () {
+            $(this).parents("div.editorRow:first").remove();
+            return false;
+        });
+    </script>
+}

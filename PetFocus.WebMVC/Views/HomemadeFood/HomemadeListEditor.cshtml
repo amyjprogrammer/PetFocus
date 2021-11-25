@@ -1,0 +1,10 @@
+﻿@model PetFocus.Data.HomemadeList
+
+<div class="editorRow">
+
+    <span>Ingredient: </span> @Html.EditorFor(m => m.Ingredient)
+
+    <span>Quantity: </span> @Html.EditorFor(m => m.Quantity)
+
+    <a href="#" class="deleteRow">delete</a>
+</div>
