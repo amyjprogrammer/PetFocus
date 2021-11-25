@@ -62,6 +62,7 @@ namespace PetFocus.WebMVC.Controllers
             var model =
                 new ReminderEdit
                 {
+                    Pet = detail.Pet,
                     ReminderId = detail.ReminderId,
                     HeartwormMed = detail.HeartwormMed,
                     RabiesVac = detail.RabiesVac,

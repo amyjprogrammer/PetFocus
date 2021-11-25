@@ -68,8 +68,8 @@ namespace PetFocus.Services
                             IsThreeYearRabiesVac = e.IsThreeYearRabiesVac,
                             FleaTreatment = e.FleaTreatment,
                             NailTrim = e.NailTrim,
-                            TrimSchedule = e.TrimSchedule, 
-                            /*Pet = e.Pet*/
+                            TrimSchedule = e.TrimSchedule,
+                            Pet = e.Pet
                         }
                         );
                 return query.ToArray();
@@ -93,7 +93,8 @@ namespace PetFocus.Services
                         IsThreeYearRabiesVac = entity.IsThreeYearRabiesVac,
                         FleaTreatment = entity.FleaTreatment,
                         NailTrim = entity.NailTrim,
-                        TrimSchedule = entity.TrimSchedule
+                        TrimSchedule = entity.TrimSchedule,
+                        Pet = entity.Pet
                     };
             }
         }

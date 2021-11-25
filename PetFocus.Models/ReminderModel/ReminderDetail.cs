@@ -30,6 +30,6 @@ namespace PetFocus.Models.ReminderModel
 
         [Display(Name = "Trim Schedule (days)")]
         public int TrimSchedule { get; set; }
-        /*public Pet Pet { get; set; }*/
+        public Pet Pet { get; set; }
     }
 }

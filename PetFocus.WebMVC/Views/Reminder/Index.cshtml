@@ -21,7 +21,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ReminderId)
+            @Html.DisplayNameFor(model => model.Pet.PetName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.HeartwormMed)
@@ -48,7 +48,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ReminderId)
+                @Html.DisplayFor(modelItem => item.Pet.PetName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HeartwormMed)
