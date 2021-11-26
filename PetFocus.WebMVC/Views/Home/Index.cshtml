@@ -5,9 +5,9 @@
 @if (User.Identity.IsAuthenticated)
 {
     <div class="jumbotron">
-        <h1>Pet Focus</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        <h1>🐾 Pet Focus</h1>
+        <br />
+        <p class="lead">Helping pet parents take better care of their loved ones.</p>
     </div>
 
     <div class="row">
@@ -16,17 +16,18 @@
             <p>
                 See all your pet information.
             </p>
-            <p><a class="btn btn-default" @Html.ActionLink("All Pets", "Index", "Pet")> </a></p>
+            <p><button onclick="location.href='@Url.Action("Index", "Pet")';return false;">All Pets</button></p>
+            @*<p><a class="btn btn-default" @Html.ActionLink("All Pets", "Index", "Pet")> </a></p>*@
         </div>
         <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+            <h2>Weight</h2>
+            <p>Track your furry friend's weight that includes a helpful graph.</p>
+            <p><button onclick="location.href='@Url.Action("Index", "Weight")';return false;">Weight All Pets</button></p>
         </div>
         <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            <h2>Reminders</h2>
+            <p>Is it time for heartworm medication, a nail trim or flea prevention?  Double check the dates you last gave them.</p>
+            <p><button onclick="location.href='@Url.Action("Index", "Reminder")';return false;">Reminders All Pets</button></p>
         </div>
     </div>
 
