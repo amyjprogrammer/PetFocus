@@ -34,7 +34,7 @@ namespace PetFocus.WebMVC.Controllers
             foreach (var species in Enum.GetValues(typeof(Species)))
                 petSpecies.Add(new ConvertEnum
                 {
-                    Value = (int) species, Text = species.ToString()
+                    Value = (int)species, Text = species.ToString()
                 });
             ViewBag.PetSpeciesEnum = petSpecies;
 
