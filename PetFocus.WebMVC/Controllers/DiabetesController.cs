@@ -27,6 +27,12 @@ namespace PetFocus.WebMVC.Controllers
         {
             /*var service = new DiabetesService();*/
             var model = service.GetDiabetes();
+
+            ViewBag.DiabetesCheck = false;
+            var check = model.FirstOrDefault(e => e.Pet.HasDiabetes == true);
+            if (check != null)
+                ViewBag.DiabetesCheck = true;
+
             return View(model);
         }
 
