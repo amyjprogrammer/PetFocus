@@ -141,3 +141,28 @@ span {
         transform: rotateY(-360deg);
     }
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 75px;
+}
+
+#footerContainer {
+    position: relative;
+    width: 100%;
+    height: 75px;
+}
+
+#imageFooter {
+    background-image: url("https://png.pngitem.com/pimgs/s/521-5213472_dogs-and-cats-hd-png-download.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+    height: 75px;
+    
+}
