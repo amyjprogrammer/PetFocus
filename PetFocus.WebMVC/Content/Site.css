@@ -72,7 +72,7 @@ button:hover {
     display: flex;
 }
 
-span {
+.carousel_words {
     margin: auto;
     font-size: 2rem;
 }
