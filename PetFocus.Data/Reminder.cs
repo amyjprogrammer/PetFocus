@@ -43,9 +43,9 @@ namespace PetFocus.Data
         { 
             get 
             {
-                if (IsThreeYearRabiesVac) return (DateTime.Now - RabiesVac).TotalDays == 1095;
+                if (IsThreeYearRabiesVac) return (DateTime.Now - RabiesVac).TotalDays > 1095;
 
-                else return (DateTime.Now - RabiesVac).TotalDays == 365;
+                else return (DateTime.Now - RabiesVac).TotalDays > 365;
             } 
         }
 

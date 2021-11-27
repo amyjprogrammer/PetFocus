@@ -19,7 +19,7 @@
 </div>
 }
 <table class="table">
-    <tr>
+    <tr >
         <th>
             @Html.DisplayNameFor(model => model.Pet.PetName)
         </th>
@@ -50,19 +50,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Pet.PetName)
             </td>
-            <td>
+            <td style="color: @((DateTime.Now - item.HeartwormMed).TotalDays > 30 ? "red" : "black" )";>
                 @Html.DisplayFor(modelItem => item.HeartwormMed)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RabiesVac)
+            <td style="color: @((item.IsTimeForRabies) ? "red": "black")";>
+            @Html.DisplayFor(modelItem => item.RabiesVac)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsThreeYearRabiesVac)
             </td>
-            <td>
+            <td style="color: @((DateTime.Now - item.FleaTreatment).TotalDays > 30 ? "red" : "black" )";>
                 @Html.DisplayFor(modelItem => item.FleaTreatment)
             </td>
-            <td>
+            <td style="color: @((DateTime.Now - item.NailTrim).TotalDays > item.TrimSchedule ? "red" : "black" )";>
                 @Html.DisplayFor(modelItem => item.NailTrim)
             </td>
             <td>
