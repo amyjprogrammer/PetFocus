@@ -23,7 +23,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style= "background-color: #4C3302; ">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #4C3302; ">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -56,9 +56,15 @@
         @RenderBody()
         <hr />
         @*<footer>
-            <p>&copy; @DateTime.Now.Year - My Pet Focus</p>
-        </footer>*@
+                <p>&copy; @DateTime.Now.Year - My Pet Focus</p>
+            </footer>*@
+        <div class="footer">
+            <div id="footerContainer">
+                <div id="imageFooter"></div>
+            </div>
+        </div>
     </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
