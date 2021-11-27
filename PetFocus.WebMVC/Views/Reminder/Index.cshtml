@@ -19,7 +19,7 @@
 </div>
 }
 <table class="table">
-    <tr>
+    <tr >
         <th>
             @Html.DisplayNameFor(model => model.Pet.PetName)
         </th>
@@ -50,7 +50,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Pet.PetName)
             </td>
-            <td>
+            <td style="color: @((DateTime.Now - item.HeartwormMed).TotalDays > 30 ? "red" : "white" )";>
                 @Html.DisplayFor(modelItem => item.HeartwormMed)
             </td>
             <td>
