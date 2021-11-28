@@ -15,10 +15,15 @@ namespace PetFocus.WebMVC.Controllers
     public class PetController : Controller
     {
         // GET: Pet
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var service = CreatePetService();
             var model = service.GetPets();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(p => p.PetName.Contains(searchString));
+            }
 
             ViewBag.DiabetesCheck = false;
             var check = model.FirstOrDefault(e => e.HasDiabetes == true);
