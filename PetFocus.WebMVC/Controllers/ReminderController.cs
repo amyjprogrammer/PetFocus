@@ -14,10 +14,15 @@ namespace PetFocus.WebMVC.Controllers
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
         // GET: Reminder
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var service = new ReminderService();
             var model = service.GetReminders();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(w => w.Pet.PetName.Contains(searchString));
+            }
 
             ViewBag.DiabetesCheck = false;
             var check = model.FirstOrDefault(e => e.Pet.HasDiabetes == true);

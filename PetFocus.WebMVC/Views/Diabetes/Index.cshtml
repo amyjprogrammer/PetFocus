@@ -18,6 +18,13 @@
         @TempData["SaveResult"]
     </div>
 }
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -48,7 +55,7 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.DiabetesId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.DiabetesId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.DiabetesId }) |
-                @Html.ActionLink("Review by Pet", "DetailsByPetId", new { petId = item.PetId}) 
+                @Html.ActionLink("Review by Pet", "DetailsByPetId", new { petId = item.PetId })
             </td>
         </tr>
     }

@@ -54,10 +54,14 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        @*<footer>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <hr />
+            <footer>
                 <p>&copy; @DateTime.Now.Year - My Pet Focus</p>
-            </footer>*@
+            </footer>
+
+        }
         <div class="footer">
             <div id="footerContainer">
                 <div id="imageFooter"></div>

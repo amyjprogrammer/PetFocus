@@ -11,15 +11,22 @@
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
-<div class="alert alert-success fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
-    @TempData["SaveResult"]
-</div>
+    <div class="alert alert-success fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
 }
 <table class="table">
-    <tr >
+    <tr>
         <th>
             @Html.DisplayNameFor(model => model.Pet.PetName)
         </th>
@@ -50,19 +57,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Pet.PetName)
             </td>
-            <td style="color: @((DateTime.Now - item.HeartwormMed).TotalDays > 30 ? "red" : "black" )";>
+            <td style="color: @((DateTime.Now - item.HeartwormMed).TotalDays > 30 ? "red" : "black" )" ;>
                 @Html.DisplayFor(modelItem => item.HeartwormMed)
             </td>
-            <td style="color: @((item.IsTimeForRabies) ? "red": "black")";>
-            @Html.DisplayFor(modelItem => item.RabiesVac)
+            <td style="color: @((item.IsTimeForRabies) ? "red": "black")" ;>
+                @Html.DisplayFor(modelItem => item.RabiesVac)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsThreeYearRabiesVac)
             </td>
-            <td style="color: @((DateTime.Now - item.FleaTreatment).TotalDays > 30 ? "red" : "black" )";>
+            <td style="color: @((DateTime.Now - item.FleaTreatment).TotalDays > 30 ? "red" : "black" )" ;>
                 @Html.DisplayFor(modelItem => item.FleaTreatment)
             </td>
-            <td style="color: @((DateTime.Now - item.NailTrim).TotalDays > item.TrimSchedule ? "red" : "black" )";>
+            <td style="color: @((DateTime.Now - item.NailTrim).TotalDays > item.TrimSchedule ? "red" : "black" )" ;>
                 @Html.DisplayFor(modelItem => item.NailTrim)
             </td>
             <td>

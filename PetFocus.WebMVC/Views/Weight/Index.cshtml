@@ -11,12 +11,19 @@
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
-<div class="alert alert-success fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
-    @TempData["SaveResult"]
-</div>
+    <div class="alert alert-success fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
 }
 <table class="table">
     <tr>
@@ -48,7 +55,7 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.WeightId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.WeightId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.WeightId }) |
-                @Html.ActionLink("Review by Pet", "DetailsByPetId", new {petId = item.PetId}) 
+                @Html.ActionLink("Review by Pet", "DetailsByPetId", new { petId = item.PetId })
             </td>
         </tr>
     }

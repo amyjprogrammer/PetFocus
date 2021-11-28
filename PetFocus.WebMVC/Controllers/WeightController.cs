@@ -22,10 +22,15 @@ namespace PetFocus.WebMVC.Controllers
         }
 
         // GET: Weight
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             /*var service = new WeightService();*/
             var model = service.GetWeights();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(w => w.Pet.PetName.Contains(searchString));
+            }
 
             ViewBag.DiabetesCheck = false;
             var check = model.FirstOrDefault(e => e.Pet.HasDiabetes == true);
