@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PetFocus.Models.ReminderModel.ReminderListItem>
+﻿@*@model IEnumerable<PetFocus.Models.ReminderModel.ReminderListItem>*@
+@model PagedList.IPagedList<PetFocus.Models.ReminderModel.ReminderListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -18,35 +21,35 @@
         @TempData["SaveResult"]
     </div>
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Reminder", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find by Pet name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Pet.PetName)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HeartwormMed)
+            Heartworm Med
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RabiesVac)
+            Rabies Vac
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsThreeYearRabiesVac)
+            Three Year Rabies
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FleaTreatment)
+            Flea Treatment
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NailTrim)
+            Nail Trim
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TrimSchedule)
+            Trim Schedule
         </th>
         <th></th>
     </tr>
@@ -84,3 +87,9 @@
     }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))

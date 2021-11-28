@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace PetFocus.WebMVC.Controllers
 {
@@ -22,10 +23,17 @@ namespace PetFocus.WebMVC.Controllers
         }
 
         // GET: Weight
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string currentFilter, int? page)
         {
             /*var service = new WeightService();*/
             var model = service.GetWeights();
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -37,7 +45,10 @@ namespace PetFocus.WebMVC.Controllers
             if (check != null)
                 ViewBag.DiabetesCheck = true;
 
-            return View(model);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Create()
         {

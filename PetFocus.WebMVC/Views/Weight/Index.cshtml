@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PetFocus.Models.WeightModel.WeightListItem>
+﻿@*@model IEnumerable<PetFocus.Models.WeightModel.WeightListItem>*@
+@model PagedList.IPagedList<PetFocus.Models.WeightModel.WeightListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -18,23 +21,23 @@
         @TempData["SaveResult"]
     </div>
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Weight", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find by Pet name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Pet.PetName)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PetWeight)
+            Weight
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WeightDate)
+            Date
         </th>
         <th></th>
     </tr>
@@ -61,3 +64,9 @@
     }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
