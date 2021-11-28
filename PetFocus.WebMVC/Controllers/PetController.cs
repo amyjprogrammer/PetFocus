@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using static PetFocus.Data.Pet;
+using PagedList;
 
 namespace PetFocus.WebMVC.Controllers
 {
@@ -15,10 +16,17 @@ namespace PetFocus.WebMVC.Controllers
     public class PetController : Controller
     {
         // GET: Pet
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string currentFilter, int? page)
         {
             var service = CreatePetService();
             var model = service.GetPets();
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -29,8 +37,11 @@ namespace PetFocus.WebMVC.Controllers
             var check = model.FirstOrDefault(e => e.HasDiabetes == true);
             if (check != null)
                 ViewBag.DiabetesCheck = true;
-            
-            return View(model);
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Create()
@@ -39,7 +50,8 @@ namespace PetFocus.WebMVC.Controllers
             foreach (var species in Enum.GetValues(typeof(Species)))
                 petSpecies.Add(new ConvertEnum
                 {
-                    Value = (int)species, Text = species.ToString()
+                    Value = (int)species,
+                    Text = species.ToString()
                 });
             ViewBag.PetSpeciesEnum = petSpecies;
 
@@ -51,7 +63,7 @@ namespace PetFocus.WebMVC.Controllers
                     Text = sex.ToString()
                 });
             ViewBag.PetSexEnum = petSex;
-            
+
             return View();
         }
 
