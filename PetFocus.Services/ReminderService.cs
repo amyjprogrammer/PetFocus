@@ -10,6 +10,10 @@ namespace PetFocus.Services
 {
     public class ReminderService
     {
+        private readonly Guid _userId;
+
+        public ReminderService(Guid userId) => _userId = userId;
+
         public bool CreateReminder(ReminderCreate model)
         {
             var entity =
@@ -58,6 +62,7 @@ namespace PetFocus.Services
                 var query =
                     ctx
                     .Reminders
+                    .Where(w => w.Pet.OwnerId == _userId)
                     .Select(
                         e =>
                         new ReminderListItem
@@ -83,7 +88,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Reminders
-                    .Single(e => e.ReminderId == id);
+                    .Single(e => e.ReminderId == id && e.Pet.OwnerId == _userId);
                 return
                     new ReminderDetail
                     {
@@ -106,7 +111,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Reminders
-                    .Single(e => e.ReminderId == model.ReminderId);
+                    .Single(e => e.ReminderId == model.ReminderId && e.Pet.OwnerId == _userId);
 
                 entity.HeartwormMed = model.HeartwormMed;
                 entity.RabiesVac = model.RabiesVac;
@@ -126,7 +131,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Reminders
-                    .Single(e => e.ReminderId == reminderId);
+                    .Single(e => e.ReminderId == reminderId && e.Pet.OwnerId == _userId);
 
                 ctx.Reminders.Remove(entity);
 

@@ -1,4 +1,5 @@
-﻿using PetFocus.Data;
+﻿using Microsoft.AspNet.Identity;
+using PetFocus.Data;
 using PetFocus.Models.DiabetesModel;
 using PetFocus.Models.HomemadeFoodModel;
 using PetFocus.Services;
@@ -16,17 +17,22 @@ namespace PetFocus.WebMVC.Controllers
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        DiabetesService service = null;
-
-        public DiabetesController()
+        private DiabetesService CreateDiabetesService()
         {
-            service = new DiabetesService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new DiabetesService(userId);
+            return service;
         }
+
+        /* public DiabetesController()
+         {
+             service = new DiabetesService();
+         }*/
 
         // GET: Diabetes
         public ActionResult Index(string searchString, string currentFilter, int? page)
         {
-            /*var service = new DiabetesService();*/
+            var service = CreateDiabetesService();
             var model = service.GetDiabetes();
 
             if (searchString != null)
@@ -64,7 +70,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            /*var service = new DiabetesService();*/
+            var service = CreateDiabetesService();
 
             if (service.CreateDiabetes(model))
             {
@@ -78,13 +84,14 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            /*var svc = new DiabetesService();*/
+            var service = CreateDiabetesService();
             var model = service.GetDiabetesById(id);
             return View(model);
         }
 
         public ActionResult DetailsByPetId(int petId)
         {
+            var service = CreateDiabetesService();
             var model = service.GetDiabetesByPetId(petId);
             var diabetes = model.Select(x => x.Glucose).ToList();
             var dates = model.Select(x => x.DiabetesDate.ToString("MM/dd/yy").ToList());
@@ -96,7 +103,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            /*var svc = new DiabetesService();*/
+            var service = CreateDiabetesService();
             var detail = service.GetDiabetesById(id);
             var model =
                 new DiabetesEdit
@@ -121,7 +128,7 @@ namespace PetFocus.WebMVC.Controllers
                 return View(model);
             }
 
-            /*var service = new DiabetesService();*/
+            var service = CreateDiabetesService();
             if (service.UpdateDiabetes(model))
             {
                 TempData["SaveResult"] = "Your diabetes input was updated.";
@@ -135,7 +142,7 @@ namespace PetFocus.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            /*var svc = new DiabetesService();*/
+            var service = CreateDiabetesService();
             var model = service.GetDiabetesById(id);
             return View(model);
         }
@@ -145,7 +152,7 @@ namespace PetFocus.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteDiabetes(int id)
         {
-            /*var service = new DiabetesService();*/
+            var service = CreateDiabetesService();
             service.DeleteDiabetes(id);
             TempData["SaveResult"] = "Your diabetes entry was deleted.";
             return RedirectToAction("Index");
@@ -153,6 +160,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Dashboard(int petId)
         {
+            var service = CreateDiabetesService();
             var list = service.GetDiabetesByPetId(petId);
             var diabetes = list.Select(x => x.Glucose).ToList();
             var dates = list.Select(x => x.DiabetesDate.ToString("MM/dd/yy").ToList());
