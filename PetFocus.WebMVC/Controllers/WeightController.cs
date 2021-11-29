@@ -23,16 +23,36 @@ namespace PetFocus.WebMVC.Controllers
             return service;
         }
 
-       /* public WeightController()
-        {
-            var service = CreateWeightService();
-        }*/
+        /* public WeightController()
+         {
+             var service = CreateWeightService();
+         }*/
 
         // GET: Weight
-        public ActionResult Index(string searchString, string currentFilter, int? page)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             var service = CreateWeightService();
             var model = service.GetWeights();
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    model = model.OrderByDescending(s => s.Pet.PetName);
+                    break;
+                case "Date":
+                    model = model.OrderBy(s => s.WeightDate);
+                    break;
+                case "date_desc":
+                    model = model.OrderByDescending(s => s.WeightDate);
+                    break;
+                default:
+                    model = model.OrderBy(s => s.Pet.PetName);
+                    break;
+            }
 
             if (searchString != null)
                 page = 1;
