@@ -26,12 +26,12 @@ namespace PetFocus.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                if (ctx.Reminders.Find(model.ReminderId) != null)
+                if (ctx.Reminders.Find(model.PetId) != null)
                 {
                     var entry =
                     ctx
                     .Reminders
-                    .Single(e => e.ReminderId == model.ReminderId);
+                    .Single(e => e.ReminderId == model.PetId);
 
                     entry.HeartwormMed = model.HeartwormMed;
                     entry.RabiesVac = model.RabiesVac;
