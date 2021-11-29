@@ -25,10 +25,23 @@ namespace PetFocus.WebMVC.Controllers
         }
 
         // GET: Reminder
-        public ActionResult Index(string searchString, string currentFilter, int? page)
+        public ActionResult Index(string sortOrder,string searchString, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             var service = CreateReminderService();
             var model = service.GetReminders();
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    model = model.OrderByDescending(s => s.Pet.PetName);
+                    break;
+                default:
+                    model = model.OrderBy(s => s.Pet.PetName);
+                    break;
+            }
 
             if (searchString != null)
                 page = 1;
