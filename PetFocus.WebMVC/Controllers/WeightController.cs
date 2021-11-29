@@ -1,4 +1,5 @@
-﻿using PetFocus.Data;
+﻿using Microsoft.AspNet.Identity;
+using PetFocus.Data;
 using PetFocus.Models.WeightModel;
 using PetFocus.Services;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace PetFocus.WebMVC.Controllers
 {
@@ -14,25 +16,45 @@ namespace PetFocus.WebMVC.Controllers
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        WeightService service = null;
-
-        public WeightController()
+        private WeightService CreateWeightService()
         {
-            service = new WeightService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new WeightService(userId);
+            return service;
         }
 
-        // GET: Weight
-        public ActionResult Index()
+       /* public WeightController()
         {
-            /*var service = new WeightService();*/
+            var service = CreateWeightService();
+        }*/
+
+        // GET: Weight
+        public ActionResult Index(string searchString, string currentFilter, int? page)
+        {
+            var service = CreateWeightService();
             var model = service.GetWeights();
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(w => w.Pet.PetName.Contains(searchString));
+            }
 
             ViewBag.DiabetesCheck = false;
             var check = model.FirstOrDefault(e => e.Pet.HasDiabetes == true);
             if (check != null)
                 ViewBag.DiabetesCheck = true;
 
-            return View(model);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Create()
         {
@@ -46,7 +68,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            /*var service = new WeightService();*/
+            var service = CreateWeightService();
 
             if (service.CreateWeight(model))
             {
@@ -60,7 +82,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-           /* var service = new WeightService();*/
+            var service = CreateWeightService();
             var model = service.GetWeightById(id);
 
             return View(model);
@@ -68,6 +90,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult DetailsByPetId(int petId)
         {
+            var service = CreateWeightService();
             var model = service.GetWeightByPetId(petId);
             var weights = model.Select(x => x.PetWeight).ToList();
             var dates = model.Select(x => x.WeightDate.ToString("MM/dd/yy").ToList());
@@ -80,7 +103,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            /*var svc = new WeightService();*/
+            var service = CreateWeightService();
             var detail = service.GetWeightById(id);
             var model =
                 new WeightEdit
@@ -105,7 +128,7 @@ namespace PetFocus.WebMVC.Controllers
                 return View(model);
             }
 
-            /*var service = new WeightService();*/
+            var service = CreateWeightService();
             if (service.UpdateWeight(model))
             {
                 TempData["SaveResult"] = "Your weight was updated.";
@@ -119,7 +142,7 @@ namespace PetFocus.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            /*var service = new WeightService();*/
+            var service = CreateWeightService();
             var model = service.GetWeightById(id);
 
             return View(model);
@@ -130,7 +153,7 @@ namespace PetFocus.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteWeight(int id)
         {
-            /*var service = new WeightService();*/
+            var service = CreateWeightService();
             service.DeleteWeight(id);
             TempData["SaveResult"] = "Your weight was deleted.";
             return RedirectToAction("Index");
@@ -138,6 +161,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Dashboard(int petId)
         {
+            var service = CreateWeightService();
             var list = service.GetWeightByPetId(petId);
             var weights = list.Select(x => x.PetWeight).ToList();
             var dates = list.Select(x => x.WeightDate.ToString("MM/dd/yy").ToList());

@@ -10,6 +10,10 @@ namespace PetFocus.Services
 {
     public class WeightService
     {
+        private readonly Guid _userId;
+
+        public WeightService(Guid userId) => _userId = userId;
+            
         public bool CreateWeight(WeightCreate model)
         {
             var entity =
@@ -33,6 +37,7 @@ namespace PetFocus.Services
                 var query =
                     ctx
                     .Weights
+                    .Where(w => w.Pet.OwnerId == _userId)
                     .Select(
                         e =>
                         new WeightListItem
@@ -55,7 +60,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Weights
-                    .Single(e => e.WeightId == id);
+                    .Single(e => e.WeightId == id && e.Pet.OwnerId == _userId);
                 return
                     new WeightDetail
                     {
@@ -74,7 +79,7 @@ namespace PetFocus.Services
                 var query =
                     ctx
                     .Weights
-                    .Where(e => e.PetId == petId)
+                    .Where(e => e.PetId == petId && e.Pet.OwnerId == _userId)
                     .Select(
                         e =>
                         new WeightListItem
@@ -97,7 +102,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Weights
-                    .Single(e => e.WeightId == model.WeightId);
+                    .Single(e => e.WeightId == model.WeightId && e.Pet.OwnerId ==_userId);
 
                 entity.PetWeight = model.PetWeight;
                 entity.WeightDate = model.WeightDate;
@@ -113,7 +118,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Weights
-                    .Single(e => e.WeightId == weightId);
+                    .Single(e => e.WeightId == weightId && e.Pet.OwnerId == _userId);
 
                 ctx.Weights.Remove(entity);
                 return ctx.SaveChanges() == 1;

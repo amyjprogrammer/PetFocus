@@ -11,6 +11,9 @@ namespace PetFocus.Services
 {
     public class DiabetesService
     {
+        private readonly Guid _userId;
+        public DiabetesService(Guid userId) => _userId = userId;
+
         public bool CreateDiabetes(DiabetesCreate model)
         {
             var entity =
@@ -34,6 +37,7 @@ namespace PetFocus.Services
                 var query =
                     ctx
                     .Diabetic
+                    .Where(w => w.Pet.OwnerId == _userId)
                     .Select(
                         e =>
                         new DiabetesListItem
@@ -56,7 +60,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Diabetic
-                    .Single(e => e.DiabetesId == id);
+                    .Single(e => e.DiabetesId == id && e.Pet.OwnerId == _userId);
                 return
                     new DiabetesDetail
                     {
@@ -75,7 +79,7 @@ namespace PetFocus.Services
                 var query =
                     ctx
                     .Diabetic
-                    .Where(e => e.PetId == petId)
+                    .Where(e => e.PetId == petId && e.Pet.OwnerId == _userId)
                     .Select(
                         e =>
                         new DiabetesListItem
@@ -98,7 +102,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Diabetic
-                    .Single(e => e.DiabetesId == model.DiabetesId);
+                    .Single(e => e.DiabetesId == model.DiabetesId && e.Pet.OwnerId == _userId);
 
                 entity.DiabetesDate = model.DiabetesDate;
                 entity.Glucose = model.Glucose;
@@ -114,7 +118,7 @@ namespace PetFocus.Services
                 var entity =
                     ctx
                     .Diabetic
-                    .Single(e => e.DiabetesId == diabetesId);
+                    .Single(e => e.DiabetesId == diabetesId && e.Pet.OwnerId == _userId);
 
                 ctx.Diabetic.Remove(entity);
                 return ctx.SaveChanges() == 1;

@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PetFocus.Models.ReminderModel.ReminderListItem>
+﻿@*@model IEnumerable<PetFocus.Models.ReminderModel.ReminderListItem>*@
+@model PagedList.IPagedList<PetFocus.Models.ReminderModel.ReminderListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -11,35 +14,42 @@
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
-<div class="alert alert-success fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
-    @TempData["SaveResult"]
-</div>
+    <div class="alert alert-success fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+@using (Html.BeginForm("Index", "Reminder", FormMethod.Get))
+{
+    <p>
+        Find by Pet name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
 }
 <table class="table">
-    <tr >
+    <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Pet.PetName)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HeartwormMed)
+            Heartworm Med
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RabiesVac)
+            Rabies Vac
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsThreeYearRabiesVac)
+            Three Year Rabies
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FleaTreatment)
+            Flea Treatment
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NailTrim)
+            Nail Trim
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TrimSchedule)
+            Trim Schedule
         </th>
         <th></th>
     </tr>
@@ -50,19 +60,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Pet.PetName)
             </td>
-            <td style="color: @((DateTime.Now - item.HeartwormMed).TotalDays > 30 ? "red" : "black" )";>
+            <td style="color: @((DateTime.Now - item.HeartwormMed).TotalDays > 30 ? "red" : "black" )" ;>
                 @Html.DisplayFor(modelItem => item.HeartwormMed)
             </td>
-            <td style="color: @((item.IsTimeForRabies) ? "red": "black")";>
-            @Html.DisplayFor(modelItem => item.RabiesVac)
+            <td style="color: @((item.IsTimeForRabies) ? "red": "black")" ;>
+                @Html.DisplayFor(modelItem => item.RabiesVac)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsThreeYearRabiesVac)
             </td>
-            <td style="color: @((DateTime.Now - item.FleaTreatment).TotalDays > 30 ? "red" : "black" )";>
+            <td style="color: @((DateTime.Now - item.FleaTreatment).TotalDays > 30 ? "red" : "black" )" ;>
                 @Html.DisplayFor(modelItem => item.FleaTreatment)
             </td>
-            <td style="color: @((DateTime.Now - item.NailTrim).TotalDays > item.TrimSchedule ? "red" : "black" )";>
+            <td style="color: @((DateTime.Now - item.NailTrim).TotalDays > item.TrimSchedule ? "red" : "black" )" ;>
                 @Html.DisplayFor(modelItem => item.NailTrim)
             </td>
             <td>
@@ -77,3 +87,9 @@
     }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))

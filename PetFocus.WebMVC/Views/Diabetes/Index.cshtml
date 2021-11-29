@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PetFocus.Models.DiabetesModel.DiabetesListItem>
+﻿@*@model IEnumerable < PetFocus.Models.DiabetesModel.DiabetesListItem > *@
+@model PagedList.IPagedList<PetFocus.Models.DiabetesModel.DiabetesListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -18,16 +21,23 @@
         @TempData["SaveResult"]
     </div>
 }
+@using (Html.BeginForm("Index", "Diabetes", FormMethod.Get))
+{
+    <p>
+        Find by Pet name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Pet.PetName)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Glucose)
+            Glucose
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiabetesDate)
+            Date
         </th>
         <th></th>
     </tr>
@@ -48,9 +58,15 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.DiabetesId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.DiabetesId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.DiabetesId }) |
-                @Html.ActionLink("Review by Pet", "DetailsByPetId", new { petId = item.PetId}) 
+                @Html.ActionLink("Review by Pet", "DetailsByPetId", new { petId = item.PetId })
             </td>
         </tr>
     }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))

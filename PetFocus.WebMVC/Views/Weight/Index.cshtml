@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PetFocus.Models.WeightModel.WeightListItem>
+﻿@*@model IEnumerable<PetFocus.Models.WeightModel.WeightListItem>*@
+@model PagedList.IPagedList<PetFocus.Models.WeightModel.WeightListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -11,23 +14,30 @@
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
-<div class="alert alert-success fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
-    @TempData["SaveResult"]
-</div>
+    <div class="alert alert-success fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+@using (Html.BeginForm("Index", "Weight", FormMethod.Get))
+{
+    <p>
+        Find by Pet name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
 }
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Pet.PetName)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PetWeight)
+            Weight
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WeightDate)
+            Date
         </th>
         <th></th>
     </tr>
@@ -48,9 +58,15 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.WeightId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.WeightId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.WeightId }) |
-                @Html.ActionLink("Review by Pet", "DetailsByPetId", new {petId = item.PetId}) 
+                @Html.ActionLink("Review by Pet", "DetailsByPetId", new { petId = item.PetId })
             </td>
         </tr>
     }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))

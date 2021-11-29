@@ -1,4 +1,6 @@
-﻿using PetFocus.Data;
+﻿using Microsoft.AspNet.Identity;
+using PagedList;
+using PetFocus.Data;
 using PetFocus.Models.ReminderModel;
 using PetFocus.Services;
 using System;
@@ -13,18 +15,41 @@ namespace PetFocus.WebMVC.Controllers
     public class ReminderController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
-        // GET: Reminder
-        public ActionResult Index()
+
+        private ReminderService CreateReminderService()
         {
-            var service = new ReminderService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new ReminderService(userId);
+            return service;
+        }
+
+        // GET: Reminder
+        public ActionResult Index(string searchString, string currentFilter, int? page)
+        {
+            var service = CreateReminderService();
             var model = service.GetReminders();
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(w => w.Pet.PetName.Contains(searchString));
+            }
 
             ViewBag.DiabetesCheck = false;
             var check = model.FirstOrDefault(e => e.Pet.HasDiabetes == true);
             if (check != null)
                 ViewBag.DiabetesCheck = true;
 
-            return View(model);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Create()
@@ -39,7 +64,7 @@ namespace PetFocus.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = new ReminderService();
+            var service = CreateReminderService(); 
 
             if (service.CreateReminder(model))
             {
@@ -53,7 +78,7 @@ namespace PetFocus.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var service = new ReminderService();
+            var service = CreateReminderService();
             var model = service.GetReminderById(id);
             ViewBag.ReminderId = new SelectList(_db.Pets, "PetId", "PetName");
 
@@ -63,7 +88,7 @@ namespace PetFocus.WebMVC.Controllers
         public ActionResult Edit(int id)
         {
             /*ViewBag.ReminderId = new SelectList(_db.Pets, "PetId", "PetName");*/
-            var service = new ReminderService();
+            var service = CreateReminderService();
             var detail = service.GetReminderById(id);
             var model =
                 new ReminderEdit
@@ -94,7 +119,7 @@ namespace PetFocus.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = new ReminderService();
+            var service = CreateReminderService();
             if (service.UpdateReminder(model))
             {
                 TempData["SaveResult"] = "Your reminder was updated.";
@@ -108,7 +133,7 @@ namespace PetFocus.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var service = new ReminderService();
+            var service = CreateReminderService();
             var model = service.GetReminderById(id);
 
             return View(model);
@@ -119,7 +144,7 @@ namespace PetFocus.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteReminder(int id)
         {
-            var service = new ReminderService();
+            var service = CreateReminderService();
             service.DeleteReminder(id);
             TempData["SaveResult"] = "Your reminder was deleted.";
             return RedirectToAction("Index");
