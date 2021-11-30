@@ -1,6 +1,6 @@
 ﻿@*@model IEnumerable<PetFocus.Models.PetModel.PetListItem>*@
 @model PagedList.IPagedList<PetFocus.Models.PetModel.PetListItem>
-    @using PagedList.Mvc;
+@using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
@@ -34,7 +34,7 @@
                 @Html.DisplayNameFor(model => model.PetId)
             </th>*@
         <th>
-            Name
+            @Html.ActionLink("Pet Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
             Species
@@ -49,7 +49,7 @@
             Breed
         </th>
         <th>
-            Birthdate
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
             Microchip #
@@ -110,4 +110,4 @@
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, currentFilter = ViewBag.CurrentFilter }))
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -16,10 +16,30 @@ namespace PetFocus.WebMVC.Controllers
     public class PetController : Controller
     {
         // GET: Pet
-        public ActionResult Index(string searchString, string currentFilter, int? page)
+        public ActionResult Index(string sortOrder,string searchString, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             var service = CreatePetService();
             var model = service.GetPets();
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    model = model.OrderByDescending(s => s.PetName);
+                    break;
+                case "Date":
+                    model = model.OrderBy(s => s.Birthdate);
+                    break;
+                case "date_desc":
+                    model = model.OrderByDescending(s => s.Birthdate);
+                    break;
+                default:
+                    model = model.OrderBy(s => s.PetName);
+                    break;
+            }
 
             if (searchString != null)
                 page = 1;
