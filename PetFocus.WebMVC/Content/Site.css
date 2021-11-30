@@ -185,3 +185,7 @@ button:hover {
     border-radius: 4px;
 }
 
+
+table tr:nth-child(even) td {
+    background-color: rgba(165,138,4,0.3);
+}
