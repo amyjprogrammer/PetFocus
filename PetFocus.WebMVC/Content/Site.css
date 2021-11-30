@@ -189,3 +189,20 @@ button:hover {
 table tr:nth-child(even) td {
     background-color: rgba(165,138,4,0.3);
 }
+
+.row {
+    background-image: url("https://static.vecteezy.com/system/resources/previews/000/673/181/non_2x/vector-variety-of-cute-dog-head-seamless-pattern.jpg");
+    font-weight: bold;
+}
+
+.adorable-dog {
+    background-image: url("https://acegif.com/wp-content/gifs/happy-cat-26.gif");
+    width: 100%;
+    height: 700px;
+    margin-bottom: 15px;
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+
